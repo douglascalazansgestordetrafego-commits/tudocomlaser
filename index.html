@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tudo Com Laser | Contato</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fontes (Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Cores da Marca -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#FAFAFA',              
+                            text: '#1A1A1A',            
+                            laserIntenso: '#FF9F1A',    
+                            goldVibrante: '#F5B84B',    
+                            goldMedio: '#D88A1F',       
+                            orangeMetal: '#B86514',     
+                            brownDark: '#3A1E0B'        
+                        }
+                    },
+                    backgroundImage: {
+                        'subtle-texture': "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B86514' fill-opacity='0.05'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' /%3E%3C/g%3E%3C/svg%3E\")"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(58, 30, 11, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAFAFA;
+            color: #1A1A1A;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B86514' fill-opacity='0.05'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' /%3E%3C/g%3E%3C/svg%3E\");
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ANIMAÇÃO LASER */
+        @keyframes laserBurn {
+            0% {
+                opacity: 0;
+                color: #FFFFFF;
+                text-shadow: 0 0 10px #FF9F1A, 0 0 20px #FF5C00;
+                transform: scale(1.1);
+            }
+            40% {
+                opacity: 1;
+                color: #FF9F1A;
+                text-shadow: 0 0 5px #FF9F1A;
+            }
+            100% {
+                opacity: 1;
+                color: currentColor;
+                text-shadow: none;
+                transform: scale(1);
+            }
+        }
+
+        .laser-char {
+            display: inline-block;
+            opacity: 0; 
+            white-space: pre; 
+        }
+
+        /* Botões */
+        .btn-premium {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #E5E5E5;
+        }
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            border-color: #D88A1F;
+            box-shadow: 0 10px 25px -5px rgba(216, 138, 31, 0.25);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+
+    <!-- Container Principal -->
+    <main class="w-full max-w-[420px] bg-white rounded-[32px] shadow-soft p-8 relative overflow-hidden fade-in-up border border-gray-100">
+        
+        <!-- Barra Topo -->
+        <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-goldVibrante via-brand-orangeMetal to-brand-goldVibrante"></div>
+
+        <!-- Header -->
+        <header class="flex flex-col items-center text-center mb-8">
+            
+            <!-- Logo -->
+            <div class="relative group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-goldVibrante to-brand-orangeMetal rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                <div class="relative w-28 h-28 bg-white rounded-full flex items-center justify-center mb-5 shadow-lg border-2 border-brand-goldMedio overflow-hidden p-1">
+                    <img src="https://i.imgur.com/rbruqHc.png" alt="Logo Tudo Com Laser" class="w-full h-full object-cover rounded-full">
+                </div>
+            </div>
+
+            <!-- Título Animado (Responsivo: text-2xl em mobile, text-3xl em telas maiores) -->
+            <h1 class="font-serif text-2xl sm:text-3xl font-bold tracking-wide mt-2 flex flex-wrap justify-center leading-tight" aria-label="Tudo Com Laser">
+                <span id="title-part1" class="text-brand-brownDark">Tudo Com </span>
+                <span id="title-part2" class="text-brand-orangeMetal font-extrabold">Laser</span>
+            </h1>
+            
+            <!-- Divisor -->
+            <div class="flex items-center gap-2 my-4 opacity-50">
+                <div class="h-[1px] w-8 bg-brand-goldMedio"></div>
+                <div class="w-1.5 h-1.5 rounded-full bg-brand-goldVibrante"></div>
+                <div class="h-[1px] w-8 bg-brand-goldMedio"></div>
+            </div>
+
+            <p class="font-sans text-sm text-gray-500 tracking-wide font-light uppercase px-2">
+                Corte & Gravação de Precisão em Caruaru – PE
+            </p>
+        </header>
+
+        <!-- Botão WhatsApp -->
+        <div class="flex flex-col w-full px-1" style="animation-delay: 1.5s;">
+            <a href="https://wa.me/5581992064543" class="btn-premium group w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md hover:border-brand-orangeMetal relative overflow-hidden">
+                <div class="absolute inset-0 bg-brand-goldVibrante opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm bg-[#25D366]">
+                        <i class="fa-brands fa-whatsapp text-2xl text-white"></i>
+                    </div>
+                    <div class="text-left">
+                        <span class="block font-serif font-bold text-lg text-brand-brownDark leading-tight">Falar no WhatsApp</span>
+                        <span class="block text-[10px] text-brand-orangeMetal uppercase tracking-wider font-semibold">Solicitar Orçamento</span>
+                    </div>
+                </div>
+                <div class="relative z-10 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-brand-orangeMetal group-hover:border-brand-orangeMetal transition-all">
+                    <i class="fa-solid fa-arrow-right text-gray-300 group-hover:text-white transition-colors text-sm"></i>
+                </div>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-10 text-center border-t border-gray-100 pt-6">
+            <button onclick="shareLink()" class="flex items-center justify-center gap-2 mx-auto hover:text-brand-orangeMetal transition-colors text-xs font-sans uppercase tracking-widest px-4 py-2 rounded-full hover:bg-gray-50 text-gray-400">
+                <i class="fa-solid fa-share-nodes"></i> Compartilhar
+            </button>
+            <p class="font-serif text-[10px] text-brand-brownDark opacity-60 mt-2">
+                © 2024 Tudo Com Laser
+            </p>
+        </footer>
+        
+    </main>
+
+    <!-- Notificação -->
+    <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 bg-white text-brand-brownDark px-6 py-3 rounded-lg shadow-xl border-l-4 border-brand-goldVibrante flex items-center gap-3 transition-all duration-500 -translate-y-24 opacity-0 z-50 font-sans text-sm w-max max-w-[90%]">
+        <i class="fa-solid fa-check text-brand-orangeMetal"></i>
+        <span>Link copiado!</span>
+    </div>
+
+    <!-- Script de Animação -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const part1 = document.getElementById('title-part1');
+            const part2 = document.getElementById('title-part2');
+            
+            // Caso o JS falhe ou demore, garante visibilidade
+            setTimeout(() => {
+                if(part1) part1.style.opacity = '1';
+                if(part2) part2.style.opacity = '1';
+            }, 3000);
+
+            function applyLaserEffect(element, startDelay = 0) {
+                if (!element) return startDelay;
+                const text = element.innerText;
+                element.innerHTML = '';
+                
+                text.split('').forEach((char, index) => {
+                    const span = document.createElement('span');
+                    span.innerText = char;
+                    span.className = 'laser-char';
+                    span.style.animation = `laserBurn 0.4s ease-out forwards ${startDelay + (index * 0.08)}s`;
+                    element.appendChild(span);
+                });
+                return startDelay + (text.length * 0.08);
+            }
+
+            const part1EndTime = applyLaserEffect(part1, 0.3);
+            applyLaserEffect(part2, part1EndTime);
+        });
+
+        function shareLink() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({ title: 'Tudo Com Laser', url: url }).catch(console.error);
+            } else {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById("toast");
+                    toast.classList.remove("-translate-y-24", "opacity-0");
+                    setTimeout(() => { toast.classList.add("-translate-y-24", "opacity-0"); }, 3000);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+
+
