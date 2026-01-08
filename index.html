@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fontes (Google Fonts) -->
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
     <!-- Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Cores da Marca -->
+    <!-- Configuração de Cores -->
     <script>
         tailwind.config = {
             theme: {
@@ -29,15 +29,12 @@
                         brand: {
                             bg: '#FAFAFA',              
                             text: '#1A1A1A',            
-                            laserIntenso: '#FF9F1A',    
+                            laserIntenso: '#FF4500',    
                             goldVibrante: '#F5B84B',    
                             goldMedio: '#D88A1F',       
                             orangeMetal: '#B86514',     
                             brownDark: '#3A1E0B'        
                         }
-                    },
-                    backgroundImage: {
-                        'subtle-texture': "url(\"data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B86514' fill-opacity='0.05'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' /%3E%3C/g%3E%3C/svg%3E\")"
                     },
                     boxShadow: {
                         'soft': '0 4px 20px -2px rgba(58, 30, 11, 0.08)',
@@ -51,47 +48,88 @@
         body {
             background-color: #FAFAFA;
             color: #1A1A1A;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23B86514' fill-opacity='0.05'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7z' /%3E%3C/g%3E%3C/svg%3E\");
+            background-image: radial-gradient(#D88A1F 0.5px, transparent 0.5px), radial-gradient(#D88A1F 0.5px, #FAFAFA 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-blend-mode: multiply;
+            opacity: 0.98;
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .main-card {
+            opacity: 1;
+        }
+
+        /* --- SISTEMA DO LASER --- */
+        
+        /* Wrapper para posicionamento relativo */
+        .laser-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 2px; /* Margem de segurança */
+        }
+
+        /* O Feixe de Laser Genérico */
+        .laser-beam {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #FF4500;
+            border-radius: 2px;
+            box-shadow: 
+                0 0 5px #FFD700, 
+                0 0 10px #FF4500, 
+                0 0 20px #FF0000;
+            z-index: 50;
             opacity: 0;
-            transform: translateY(20px);
+            pointer-events: none;
+            transition: left 0.04s linear, top 0.04s linear; /* Movimento rápido */
+        }
+        
+        /* Laser Principal (Título) */
+        #beam-title { width: 3px; }
+        
+        /* Laser Secundário (Subtítulo) - Mais fino */
+        #beam-subtitle { width: 2px; }
+
+        /* Faísca na ponta */
+        .laser-beam::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: -8px;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #FFF 20%, #FF8C00 60%, transparent 70%);
+            animation: burnSpark 0.1s infinite;
         }
 
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes burnSpark {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.3); opacity: 1; }
         }
 
-        /* ANIMAÇÃO LASER */
-        @keyframes laserBurn {
+        /* Estados das Letras */
+        .char-invisible {
+            color: transparent;
+            text-shadow: none;
+        }
+
+        .char-burned {
+            animation: coolDownEffect 0.6s ease-out forwards;
+        }
+
+        @keyframes coolDownEffect {
             0% {
-                opacity: 0;
                 color: #FFFFFF;
-                text-shadow: 0 0 10px #FF9F1A, 0 0 20px #FF5C00;
-                transform: scale(1.1);
-            }
-            40% {
-                opacity: 1;
-                color: #FF9F1A;
-                text-shadow: 0 0 5px #FF9F1A;
+                text-shadow: 0 0 10px #FF4500, 0 0 20px #FFD700;
             }
             100% {
-                opacity: 1;
-                color: currentColor;
+                color: var(--target-color);
                 text-shadow: none;
-                transform: scale(1);
             }
         }
 
-        .laser-char {
-            display: inline-block;
-            opacity: 0; 
-            white-space: pre; 
-        }
-
-        /* Botões */
+        /* Botão */
         .btn-premium {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #E5E5E5;
@@ -106,27 +144,29 @@
 <body class="min-h-screen flex flex-col items-center justify-center p-6">
 
     <!-- Container Principal -->
-    <main class="w-full max-w-[420px] bg-white rounded-[32px] shadow-soft p-8 relative overflow-hidden fade-in-up border border-gray-100">
+    <main class="main-card w-full max-w-[420px] bg-white rounded-[32px] shadow-soft p-8 relative overflow-hidden border border-gray-100">
         
         <!-- Barra Topo -->
         <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-goldVibrante via-brand-orangeMetal to-brand-goldVibrante"></div>
 
         <!-- Header -->
-        <header class="flex flex-col items-center text-center mb-8">
+        <header class="flex flex-col items-center text-center mb-8 relative">
             
             <!-- Logo -->
-            <div class="relative group">
+            <div class="relative group z-10">
                 <div class="absolute -inset-1 bg-gradient-to-r from-brand-goldVibrante to-brand-orangeMetal rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
                 <div class="relative w-28 h-28 bg-white rounded-full flex items-center justify-center mb-5 shadow-lg border-2 border-brand-goldMedio overflow-hidden p-1">
                     <img src="https://i.imgur.com/rbruqHc.png" alt="Logo Tudo Com Laser" class="w-full h-full object-cover rounded-full">
                 </div>
             </div>
 
-            <!-- Título Animado (Responsivo: text-2xl em mobile, text-3xl em telas maiores) -->
-            <h1 class="font-serif text-2xl sm:text-3xl font-bold tracking-wide mt-2 flex flex-wrap justify-center leading-tight" aria-label="Tudo Com Laser">
-                <span id="title-part1" class="text-brand-brownDark">Tudo Com </span>
-                <span id="title-part2" class="text-brand-orangeMetal font-extrabold">Laser</span>
-            </h1>
+            <!-- TÍTULO ANIMADO -->
+            <div id="wrapper-title" class="laser-wrapper mt-2">
+                <div id="beam-title" class="laser-beam"></div>
+                <h1 id="text-title" class="font-serif text-3xl sm:text-3xl font-bold tracking-wide leading-tight flex flex-wrap justify-center gap-x-2">
+                    <!-- JS Preenche -->
+                </h1>
+            </div>
             
             <!-- Divisor -->
             <div class="flex items-center gap-2 my-4 opacity-50">
@@ -135,13 +175,18 @@
                 <div class="h-[1px] w-8 bg-brand-goldMedio"></div>
             </div>
 
-            <p class="font-sans text-sm text-gray-500 tracking-wide font-light uppercase px-2">
-                Corte & Gravação de Precisão em Caruaru – PE
-            </p>
+            <!-- SUBTÍTULO ANIMADO -->
+            <div id="wrapper-subtitle" class="laser-wrapper">
+                <div id="beam-subtitle" class="laser-beam"></div>
+                <p id="text-subtitle" class="font-sans text-sm tracking-wide font-light uppercase px-2 leading-relaxed">
+                    <!-- JS Preenche -->
+                </p>
+            </div>
+
         </header>
 
         <!-- Botão WhatsApp -->
-        <div class="flex flex-col w-full px-1" style="animation-delay: 1.5s;">
+        <div class="flex flex-col w-full px-1 opacity-0 transition-opacity duration-1000" id="cta-area">
             <a href="https://wa.me/5581992064543" class="btn-premium group w-full bg-white rounded-xl p-5 flex items-center justify-between shadow-md hover:border-brand-orangeMetal relative overflow-hidden">
                 <div class="absolute inset-0 bg-brand-goldVibrante opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
                 <div class="flex items-center gap-4 relative z-10">
@@ -160,7 +205,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="mt-10 text-center border-t border-gray-100 pt-6">
+        <footer class="mt-10 text-center border-t border-gray-100 pt-6 opacity-0 transition-opacity duration-1000" id="footer-area">
             <button onclick="shareLink()" class="flex items-center justify-center gap-2 mx-auto hover:text-brand-orangeMetal transition-colors text-xs font-sans uppercase tracking-widest px-4 py-2 rounded-full hover:bg-gray-50 text-gray-400">
                 <i class="fa-solid fa-share-nodes"></i> Compartilhar
             </button>
@@ -177,35 +222,128 @@
         <span>Link copiado!</span>
     </div>
 
-    <!-- Script de Animação -->
+    <!-- SCRIPT DE CORTE REAL SEQUENCIAL -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const part1 = document.getElementById('title-part1');
-            const part2 = document.getElementById('title-part2');
-            
-            // Caso o JS falhe ou demore, garante visibilidade
-            setTimeout(() => {
-                if(part1) part1.style.opacity = '1';
-                if(part2) part2.style.opacity = '1';
-            }, 3000);
+            const ctaArea = document.getElementById('cta-area');
+            const footerArea = document.getElementById('footer-area');
 
-            function applyLaserEffect(element, startDelay = 0) {
-                if (!element) return startDelay;
-                const text = element.innerText;
-                element.innerHTML = '';
+            // --- DADOS DO TÍTULO ---
+            const titleData = {
+                wrapperId: 'wrapper-title',
+                textId: 'text-title',
+                beamId: 'beam-title',
+                speed: 80, // Velocidade (ms por letra)
+                words: [
+                    { text: "Tudo", color: "#3A1E0B" },
+                    { text: "Com", color: "#3A1E0B" },
+                    { text: "Laser", color: "#B86514" }
+                ]
+            };
+
+            // --- DADOS DO SUBTÍTULO ---
+            const subtitleData = {
+                wrapperId: 'wrapper-subtitle',
+                textId: 'text-subtitle',
+                beamId: 'beam-subtitle',
+                speed: 40, // Mais rápido pois o texto é longo
+                // Dividimos a string longa em palavras para o script processar
+                words: "Corte & Gravação de Precisão em Caruaru – PE".split(" ").map(w => ({ text: w, color: "#6B7280" }))
+            };
+
+            // Função para preparar o HTML (Criar spans invisíveis)
+            function prepareTextHTML(data) {
+                const container = document.getElementById(data.textId);
                 
-                text.split('').forEach((char, index) => {
-                    const span = document.createElement('span');
-                    span.innerText = char;
-                    span.className = 'laser-char';
-                    span.style.animation = `laserBurn 0.4s ease-out forwards ${startDelay + (index * 0.08)}s`;
-                    element.appendChild(span);
+                data.words.forEach((wordData, index) => {
+                    const wordSpan = document.createElement('span');
+                    wordSpan.style.whiteSpace = 'nowrap';
+                    
+                    wordData.text.split('').forEach(char => {
+                        const charSpan = document.createElement('span');
+                        charSpan.textContent = char;
+                        charSpan.className = 'char-invisible relative inline-block';
+                        charSpan.style.setProperty('--target-color', wordData.color);
+                        wordSpan.appendChild(charSpan);
+                    });
+
+                    container.appendChild(wordSpan);
+
+                    if (index < data.words.length - 1) {
+                        const space = document.createElement('span');
+                        space.innerHTML = '&nbsp;';
+                        container.appendChild(space);
+                    }
                 });
-                return startDelay + (text.length * 0.08);
             }
 
-            const part1EndTime = applyLaserEffect(part1, 0.3);
-            applyLaserEffect(part2, part1EndTime);
+            // Função para executar o Laser em um bloco específico
+            async function runLaserSequence(data) {
+                const wrapper = document.getElementById(data.wrapperId);
+                const beam = document.getElementById(data.beamId);
+                // Seleciona apenas os chars invisíveis dentro deste wrapper específico
+                const chars = wrapper.querySelectorAll('.char-invisible');
+                
+                if(chars.length === 0) return;
+
+                beam.style.opacity = '1';
+
+                for (let i = 0; i < chars.length; i++) {
+                    const char = chars[i];
+                    
+                    const wrapperRect = wrapper.getBoundingClientRect();
+                    const charRect = char.getBoundingClientRect();
+
+                    const relativeTop = charRect.top - wrapperRect.top;
+                    const relativeLeft = charRect.left - wrapperRect.left;
+                    
+                    // Configura o Laser
+                    beam.style.height = (charRect.height * 1.3) + 'px';
+                    beam.style.top = (relativeTop - (charRect.height * 0.15)) + 'px';
+                    beam.style.left = (relativeLeft + charRect.width) + 'px'; // Lado direito da letra
+
+                    // Queima a letra
+                    char.className = 'char-burned font-bold';
+                    
+                    // Delay mecânico
+                    await new Promise(r => setTimeout(r, data.speed));
+                }
+
+                beam.style.opacity = '0';
+            }
+
+            // --- ORQUESTRAÇÃO GERAL ---
+            async function startShow() {
+                // 1. Preparar HTML
+                prepareTextHTML(titleData);
+                prepareTextHTML(subtitleData);
+
+                // 2. Aguardar fontes e estabilidade
+                await document.fonts.ready;
+                await new Promise(r => setTimeout(r, 600));
+
+                // 3. Executar Título
+                await runLaserSequence(titleData);
+                
+                // Pequena pausa entre título e subtítulo
+                await new Promise(r => setTimeout(r, 200));
+
+                // 4. Executar Subtítulo
+                await runLaserSequence(subtitleData);
+
+                // 5. Mostrar Botões e Footer
+                ctaArea.style.opacity = '1';
+                footerArea.style.opacity = '1';
+            }
+
+            // Fallback de segurança (caso trave, mostra tudo em 4s)
+            setTimeout(() => {
+                document.querySelectorAll('.char-invisible').forEach(c => c.style.color = 'var(--target-color)');
+                ctaArea.style.opacity = '1';
+                footerArea.style.opacity = '1';
+            }, 6000);
+
+            startShow();
         });
 
         function shareLink() {
