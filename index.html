@@ -1,370 +1,716 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-BR" class="light">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tudo Com Laser | Links</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tudo Com Laser</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Fontes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Configuração de Cores -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
                     colors: {
-                        brand: {
-                            bg: '#FAFAFA',              
-                            text: '#1A1A1A',            
-                            laserIntenso: '#FF4500',    
-                            goldVibrante: '#F5B84B',    
-                            goldMedio: '#D88A1F',       
-                            orangeMetal: '#B86514',     
-                            brownDark: '#3A1E0B'        
-                        }
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 20px -2px rgba(58, 30, 11, 0.08)',
+                        gold: '#D4AF37',
+                        clayLight: '#e6eef5',
+                        clayDark: '#1a1c23'
                     }
                 }
             }
         }
     </script>
-
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            background-color: #FAFAFA;
-            color: #1A1A1A;
-            background-image: radial-gradient(#D88A1F 0.5px, transparent 0.5px), radial-gradient(#D88A1F 0.5px, #FAFAFA 0.5px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            background-blend-mode: multiply;
-            opacity: 0.98;
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .font-elegant { font-family: 'Playfair Display', serif; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* CLAYMORPHISM CORE CLASSES */
+        .clay-surface {
+            background-color: #e6eef5;
+            border-radius: 24px;
+            box-shadow: 
+                10px 10px 20px rgba(166, 180, 200, 0.4),
+                -10px -10px 20px rgba(255, 255, 255, 0.8),
+                inset -5px -5px 10px rgba(166, 180, 200, 0.2),
+                inset 5px 5px 10px rgba(255, 255, 255, 0.5);
+            border: none;
+            transition: all 0.3s ease;
         }
 
-        .main-card { opacity: 1; }
-
-        /* --- SISTEMA DO LASER --- */
-        .laser-wrapper {
-            position: relative;
-            display: inline-block;
-            padding: 2px;
+        .clay-btn {
+            background-color: #e6eef5;
+            border-radius: 16px;
+            box-shadow: 
+                6px 6px 12px rgba(166, 180, 200, 0.4),
+                -6px -6px 12px rgba(255, 255, 255, 0.8),
+                inset -3px -3px 6px rgba(166, 180, 200, 0.2),
+                inset 3px 3px 6px rgba(255, 255, 255, 0.6);
+            border: none;
+            transition: all 0.2s ease;
         }
 
-        .laser-beam {
-            position: absolute;
-            top: 0;
-            left: 0;
-            background-color: #FF4500;
-            border-radius: 2px;
-            box-shadow: 0 0 5px #FFD700, 0 0 10px #FF4500, 0 0 20px #FF0000;
-            z-index: 50;
-            opacity: 0;
-            pointer-events: none;
-            transition: left 0.04s linear, top 0.04s linear;
+        .clay-btn-pressed {
+            background-color: #e6eef5;
+            border-radius: 16px;
+            box-shadow: 
+                inset 6px 6px 12px rgba(166, 180, 200, 0.4),
+                inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            border: none;
+            transition: all 0.2s ease;
         }
+
+        .clay-wa {
+            background-color: #25D366;
+            border-radius: 9999px;
+            box-shadow: 
+                6px 6px 15px rgba(37, 211, 102, 0.3),
+                -4px -4px 10px rgba(255, 255, 255, 0.5),
+                inset -4px -4px 8px rgba(18, 140, 63, 0.4),
+                inset 4px 4px 8px rgba(100, 255, 140, 0.6);
+            border: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .clay-wa:active {
+            transform: scale(0.95);
+            box-shadow: 
+                inset 6px 6px 12px rgba(18, 140, 63, 0.5),
+                inset -6px -6px 12px rgba(100, 255, 140, 0.7);
+        }
+
+        /* DARK MODE CLAY */
+        .dark .clay-surface {
+            background-color: #1a1c23;
+            box-shadow: 
+                10px 10px 20px rgba(0, 0, 0, 0.4),
+                -10px -10px 20px rgba(40, 45, 55, 0.5),
+                inset -5px -5px 10px rgba(0, 0, 0, 0.3),
+                inset 5px 5px 10px rgba(50, 55, 65, 0.4);
+        }
+        .dark .clay-btn {
+            background-color: #1a1c23;
+            box-shadow: 
+                6px 6px 12px rgba(0, 0, 0, 0.4),
+                -6px -6px 12px rgba(40, 45, 55, 0.5),
+                inset -3px -3px 6px rgba(0, 0, 0, 0.3),
+                inset 3px 3px 6px rgba(50, 55, 65, 0.4);
+        }
+        .dark .clay-btn-pressed {
+            background-color: #1a1c23;
+            box-shadow: 
+                inset 6px 6px 12px rgba(0, 0, 0, 0.5),
+                inset -6px -6px 12px rgba(40, 45, 55, 0.4);
+        }
+        .dark .clay-wa {
+            box-shadow: 
+                6px 6px 15px rgba(0, 0, 0, 0.4),
+                inset -4px -4px 8px rgba(18, 140, 63, 0.4),
+                inset 4px 4px 8px rgba(100, 255, 140, 0.6);
+        }
+
+        @keyframes story-progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        .animate-story-progress { animation-name: story-progress; animation-timing-function: linear; animation-fill-mode: forwards; }
         
-        #beam-title { width: 3px; }
-        #beam-subtitle { width: 2px; }
-
-        .laser-beam::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: -8px;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, #FFF 20%, #FF8C00 60%, transparent 70%);
-            animation: burnSpark 0.1s infinite;
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
+        .animate-scroll { animation: scroll 20s linear infinite; }
+        .animate-scroll:hover { animation-play-state: paused; }
 
-        @keyframes burnSpark {
-            0% { transform: scale(1); opacity: 0.8; }
-            100% { transform: scale(1.3); opacity: 1; }
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
-
-        .char-invisible { color: transparent; text-shadow: none; }
-        .char-burned { animation: coolDownEffect 0.6s ease-out forwards; }
-
-        @keyframes coolDownEffect {
-            0% { color: #FFFFFF; text-shadow: 0 0 10px #FF4500, 0 0 20px #FFD700; }
-            100% { color: var(--target-color); text-shadow: none; }
-        }
-
-        /* --- ANIMAÇÕES PULSANTES (NOVAS) --- */
-        
-        /* Pulsação Dourada Forte (WhatsApp) */
-        @keyframes pulse-ring-orange {
-            0% { box-shadow: 0 0 0 0 rgba(245, 184, 75, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(245, 184, 75, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 184, 75, 0); }
-        }
-
-        .btn-pulse-primary {
-            animation: pulse-ring-orange 2s infinite;
-        }
-
-        /* Respiração Suave (Redes Sociais) */
-        @keyframes border-breath {
-            0% { border-color: #E5E5E5; }
-            50% { border-color: #F5B84B; box-shadow: 0 4px 15px -3px rgba(245, 184, 75, 0.3); }
-            100% { border-color: #E5E5E5; }
-        }
-
-        .btn-pulse-secondary {
-            animation: border-breath 3s infinite ease-in-out;
-            animation-delay: 1s; /* Começa um pouco depois do principal */
-        }
-
-        /* Botão Base */
-        .btn-premium {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #E5E5E5;
-        }
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            border-color: #D88A1F !important; /* Força a cor no hover */
-            animation: none; /* Para a pulsação ao passar o mouse para focar */
-            box-shadow: 0 10px 25px -5px rgba(216, 138, 31, 0.25);
-        }
+        .clay-pulse { animation: pulse-whatsapp 2s infinite ease-in-out; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-6">
 
-    <!-- Container Principal -->
-    <main class="main-card w-full max-w-[420px] bg-white rounded-[32px] shadow-soft p-8 relative overflow-hidden border border-gray-100">
+<body class="bg-[#e6eef5] dark:bg-[#1a1c23] text-slate-800 dark:text-neutral-200 selection:bg-[#D4AF37] selection:text-black transition-colors duration-300 overflow-x-hidden">
+    <div class="min-h-screen flex flex-row relative w-full">
         
-        <!-- Barra Topo -->
-        <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-brand-goldVibrante via-brand-orangeMetal to-brand-goldVibrante"></div>
-
-        <!-- Header -->
-        <header class="flex flex-col items-center text-center mb-6 relative">
+        <!-- SIDEBAR FIXA (MESMO LAYOUT MOBILE E DESKTOP) -->
+        <!-- No celular (w-[100px]), no tablet (w-[130px]), no pc (w-64) -->
+        <aside class="fixed inset-y-0 left-0 z-50 w-[100px] sm:w-[130px] md:w-64 bg-[#e6eef5] dark:bg-[#1a1c23] flex flex-col transition-all duration-300 ease-in-out border-r border-slate-300/30 dark:border-white/5 shadow-lg md:shadow-none">
             
-            <!-- Logo -->
-            <div class="relative group z-10">
-                <div class="absolute -inset-1 bg-gradient-to-r from-brand-goldVibrante to-brand-orangeMetal rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                <div class="relative w-28 h-28 bg-white rounded-full flex items-center justify-center mb-5 shadow-lg border-2 border-brand-goldMedio overflow-hidden p-1">
-                    <img src="https://i.imgur.com/rbruqHc.png" alt="Logo Tudo Com Laser" class="w-full h-full object-cover rounded-full">
+            <div class="p-2 md:p-6 flex flex-col items-center gap-2 md:gap-3 mt-2 md:mt-0">
+                <div class="clay-surface p-1 rounded-full shrink-0">
+                    <img src="https://i.imgur.com/fWLcqLl.jpg" alt="Logo" class="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 rounded-full object-cover" />
+                </div>
+                <div class="text-center w-full">
+                    <span class="font-bold text-[8px] md:text-sm tracking-widest uppercase block text-slate-500 dark:text-gray-400 leading-none">Tudo Com</span>
+                    <span class="font-extrabold text-[12px] md:text-2xl text-[#D4AF37] block mt-0.5 drop-shadow-sm leading-none">Laser</span>
+                </div>
+
+                <!-- Botoes Topo (Tema e Insta) Lado a Lado -->
+                <div class="flex flex-row gap-1 md:gap-2 w-full mt-1">
+                    <button onclick="toggleTheme()" class="flex-1 clay-btn flex flex-col md:flex-row justify-center items-center gap-1 md:gap-1.5 p-1.5 md:px-3 md:py-2.5 font-semibold text-slate-600 dark:text-neutral-300 hover:text-[#D4AF37] transition-colors">
+                        <i data-lucide="moon" id="theme-icon" class="w-3.5 h-3.5 md:w-5 md:h-5"></i>
+                        <span id="theme-text" class="text-[8px] md:text-xs leading-none">Escuro</span>
+                    </button>
+                    <a href="https://www.instagram.com/tudocomlaser/" target="_blank" rel="noopener noreferrer" class="flex-1 clay-btn flex flex-col md:flex-row justify-center items-center gap-1 md:gap-1.5 p-1.5 md:px-3 md:py-2.5 font-semibold text-slate-600 dark:text-neutral-300 hover:text-[#D4AF37] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-3.5 h-3.5 md:w-5 md:h-5">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        <span class="text-[8px] md:text-xs leading-none">Insta</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- TÍTULO ANIMADO -->
-            <div id="wrapper-title" class="laser-wrapper mt-2">
-                <div id="beam-title" class="laser-beam"></div>
-                <h1 id="text-title" class="font-serif text-3xl sm:text-3xl font-bold tracking-wide leading-tight flex flex-wrap justify-center gap-x-2"></h1>
+            <!-- Navigation Links - Vertical Scrolling in all devices -->
+            <nav id="nav-container" class="flex-1 overflow-y-auto w-full py-2 md:py-6 px-1.5 md:px-5 flex flex-col gap-2 md:gap-4 no-scrollbar pb-6">
+                <!-- Injected via JS -->
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT (Margin left ajustada para casar com a largura da sidebar) -->
+        <main class="flex-1 w-full ml-[100px] sm:ml-[130px] md:ml-64 flex flex-col min-h-screen transition-all duration-300">
+            <div id="content-container" class="flex-1 w-full max-w-5xl mx-auto px-2 sm:px-6 md:px-8 py-4 md:py-12">
+                <!-- Injected via JS -->
             </div>
-            
-            <!-- Divisor -->
-            <div class="flex items-center gap-2 my-4 opacity-50">
-                <div class="h-[1px] w-8 bg-brand-goldMedio"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-brand-goldVibrante"></div>
-                <div class="h-[1px] w-8 bg-brand-goldMedio"></div>
-            </div>
+        </main>
 
-            <!-- SUBTÍTULO ANIMADO -->
-            <div id="wrapper-subtitle" class="laser-wrapper">
-                <div id="beam-subtitle" class="laser-beam"></div>
-                <p id="text-subtitle" class="font-sans text-sm tracking-wide font-light uppercase px-2 leading-relaxed"></p>
-            </div>
+        <!-- FLOATING WHATSAPP BUTTON (Clay Style) -->
+        <button onclick="handleRedirectWhatsApp('')" class="fixed bottom-3 right-3 md:bottom-8 md:right-8 z-[45] flex items-center gap-1.5 md:gap-2 text-white px-3 py-2.5 md:px-6 md:py-4 font-bold clay-wa clay-pulse cursor-pointer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 md:w-6 md:h-6" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.883-.733-1.48-1.638-1.653-1.935-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+            </svg>
+            <span class="text-[10px] md:text-base hidden sm:inline">Faça o seu orçamento</span>
+            <span class="text-[10px] sm:hidden">Orçamento</span>
+        </button>
 
-        </header>
-
-        <!-- Área de Botões (CTA) -->
-        <div class="flex flex-col w-full px-1 gap-4 opacity-0 transition-opacity duration-1000" id="cta-area">
-            
-            <!-- Botão WhatsApp (Principal - Pulsação Dourada) -->
-            <a href="https://wa.me/5581992064543" target="_blank" class="btn-premium btn-pulse-primary group w-full bg-white rounded-xl p-4 flex items-center justify-between shadow-md hover:border-brand-orangeMetal relative overflow-hidden">
-                <div class="absolute inset-0 bg-brand-goldVibrante opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-                <div class="flex items-center gap-4 relative z-10">
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm bg-[#25D366]">
-                        <i class="fa-brands fa-whatsapp text-2xl text-white"></i>
-                    </div>
-                    <div class="text-left">
-                        <span class="block font-serif font-bold text-lg text-brand-brownDark leading-tight">WhatsApp</span>
-                        <span class="block text-[10px] text-brand-orangeMetal uppercase tracking-wider font-semibold">Orçamento Rápido</span>
-                    </div>
-                </div>
-                <div class="relative z-10 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-brand-orangeMetal group-hover:border-brand-orangeMetal transition-all">
-                    <i class="fa-solid fa-arrow-right text-gray-300 group-hover:text-white transition-colors text-sm"></i>
-                </div>
-            </a>
-
-            <!-- Botão Instagram (Secundário - Respiração Suave) -->
-            <a href="https://www.instagram.com/tudocomlaser?igsh=MXRuZnF4cjg2cmlsNw==" target="_blank" class="btn-premium btn-pulse-secondary group w-full bg-white rounded-xl p-4 flex items-center justify-between shadow-sm hover:border-brand-orangeMetal relative overflow-hidden">
-                <div class="absolute inset-0 bg-brand-goldVibrante opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-                <div class="flex items-center gap-4 relative z-10">
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500">
-                        <i class="fa-brands fa-instagram text-2xl text-white"></i>
-                    </div>
-                    <div class="text-left">
-                        <span class="block font-serif font-bold text-lg text-brand-brownDark leading-tight">Instagram</span>
-                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Portfólio & Fotos</span>
-                    </div>
-                </div>
-                <div class="relative z-10 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-brand-orangeMetal group-hover:border-brand-orangeMetal transition-all">
-                    <i class="fa-solid fa-arrow-right text-gray-300 group-hover:text-white transition-colors text-sm"></i>
-                </div>
-            </a>
-
-            <!-- Botão TikTok (Secundário - Respiração Suave) -->
-            <a href="https://www.tiktok.com/@tudocomlaser?_r=1&_t=ZG-92t6g1NW2U4" target="_blank" class="btn-premium btn-pulse-secondary group w-full bg-white rounded-xl p-4 flex items-center justify-between shadow-sm hover:border-brand-orangeMetal relative overflow-hidden">
-                <div class="absolute inset-0 bg-brand-goldVibrante opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
-                <div class="flex items-center gap-4 relative z-10">
-                    <div class="w-12 h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm bg-black">
-                        <i class="fa-brands fa-tiktok text-2xl text-white"></i>
-                    </div>
-                    <div class="text-left">
-                        <span class="block font-serif font-bold text-lg text-brand-brownDark leading-tight">TikTok</span>
-                        <span class="block text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Vídeos de Produção</span>
-                    </div>
-                </div>
-                <div class="relative z-10 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-brand-orangeMetal group-hover:border-brand-orangeMetal transition-all">
-                    <i class="fa-solid fa-arrow-right text-gray-300 group-hover:text-white transition-colors text-sm"></i>
-                </div>
-            </a>
-
+        <!-- MODAL CONTAINERS -->
+        <div id="product-modal" class="hidden fixed inset-0 z-[100] items-center justify-center p-4 bg-[#e6eef5]/80 dark:bg-[#1a1c23]/90 backdrop-blur-md" onclick="closeModals(event)">
+            <!-- Injected via JS -->
         </div>
 
-        <!-- Footer -->
-        <footer class="mt-8 text-center border-t border-gray-100 pt-6 opacity-0 transition-opacity duration-1000" id="footer-area">
-            <button onclick="shareLink()" class="flex items-center justify-center gap-2 mx-auto hover:text-brand-orangeMetal transition-colors text-xs font-sans uppercase tracking-widest px-4 py-2 rounded-full hover:bg-gray-50 text-gray-400">
-                <i class="fa-solid fa-share-nodes"></i> Compartilhar
+        <div id="fullscreen-modal" class="hidden fixed inset-0 z-[110] items-center justify-center bg-[#e6eef5]/95 dark:bg-[#1a1c23]/95 backdrop-blur-xl" onclick="closeModals(event)">
+            <button onclick="setFullscreenImage(null)" class="absolute top-6 right-6 md:top-8 md:right-8 z-50 p-3 clay-btn text-slate-800 dark:text-white cursor-pointer">
+                <i data-lucide="x" class="w-6 h-6"></i>
             </button>
-            <p class="font-serif text-[10px] text-brand-brownDark opacity-60 mt-2">
-                © 2024 Tudo Com Laser
-            </p>
-        </footer>
-        
-    </main>
-
-    <!-- Notificação -->
-    <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 bg-white text-brand-brownDark px-6 py-3 rounded-lg shadow-xl border-l-4 border-brand-goldVibrante flex items-center gap-3 transition-all duration-500 -translate-y-24 opacity-0 z-50 font-sans text-sm w-max max-w-[90%]">
-        <i class="fa-solid fa-check text-brand-orangeMetal"></i>
-        <span>Link copiado!</span>
+            <div id="fullscreen-content" class="w-full h-full flex items-center justify-center p-4 md:p-8 pointer-events-none"></div>
+        </div>
     </div>
 
-    <!-- SCRIPT DE CORTE REAL SEQUENCIAL -->
     <script>
+        const WHATSAPP_NUMBER = "5581992064543"; 
+        const WHATSAPP_BASE_MSG = "Olá! Vim pelo site e quero o orçamento deste produto";
+        
+        // Categoria Organizadas e Renomeadas conforme pedido
+        const CATEGORIES = [
+            { id: 'copos', name: 'Copos Térmicos', desc: 'Copos térmicos personalizados com gravação a laser (360ml e 473ml).' },
+            { id: 'garrafas', name: 'Garrafas térmicas', desc: 'Garrafas térmicas personalizadas para presentes, empresas e uso diário.' },
+            { id: '360-graus', name: 'Gravação 360º', desc: 'Produtos exclusivos com gravação a laser em toda a volta (360 graus).' },
+            { id: 'foto-gravacao', name: 'Foto Gravação', desc: 'Gravação a laser de fotografias com altíssima precisão e detalhes.' },
+            { id: 'kit-churrasco', name: 'Kit churrasco', desc: 'Kits personalizados para presente, datas comemorativas e brindes.' },
+            { id: 'porta-joias', name: 'Porta jóias', desc: 'Porta jóias personalizados com acabamento elegante.' },
+            { id: 'tabuas', name: 'Tábuas de madeira', desc: 'Tábuas de madeira personalizadas com gravação a laser.' }
+        ];
+
+        // Destaques agora em formato de vídeo
+        const STORY_IMAGES = [
+            'https://i.imgur.com/9RPfCp8.mp4',
+            'https://i.imgur.com/Zkb4U8n.mp4'
+        ];
+
+        const WORK_IMAGES = [
+            'https://i.imgur.com/70WrggZ.jpg',
+            'https://i.imgur.com/SzorQhA.jpg',
+            'https://i.imgur.com/ovnrYLT.jpg',
+            'https://i.imgur.com/XLYQLn3.jpg',
+        ];
+
+        // Banco de produtos atualizado e completo
+        const PRODUCTS_DB = {
+            'copos': [
+                { id: 'c4_1', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/HV7R6RH.jpg', size: '473ml' },
+                { id: 'c4_2', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/eSeV7Vh.jpg', size: '473ml' },
+                { id: 'c4_3', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/j1Ogs8k.jpg', size: '473ml' },
+                { id: 'c4_4', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/QFUHmsb.jpg', size: '473ml' },
+                { id: 'c4_5', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/P0PiCGF.jpg', size: '473ml' },
+                { id: 'c4_6', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/xTjeQlE.jpg', size: '473ml' },
+                { id: 'c4_7', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/ERv3Yh9.jpg', size: '473ml' },
+                { id: 'c3_1', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/9855dPS.jpg', size: '360ml' },
+                { id: 'c3_2', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/3qFSnAv.jpg', size: '360ml' },
+                { id: 'c3_3', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/EzUgiWo.jpg', size: '360ml' },
+                { id: 'c3_4', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/xHv8944.jpg', size: '360ml' },
+                { id: 'c3_5', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/qrvGA3c.jpg', size: '360ml' },
+                { id: 'c3_6', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/r1F59Rx.jpg', size: '360ml' },
+                { id: 'c3_7', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/kTwT8L0.jpg', size: '360ml' },
+                { id: 'c3_8', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/RryTRd2.jpg', size: '360ml' },
+                { id: 'c3_9', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/j79S59e.jpg', size: '360ml' },
+            ],
+            'garrafas': [
+                { id: 'g400_1', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/LDbUluF.png', size: '400ml' },
+                { id: 'g400_2', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/ffDP92P.png', size: '400ml' },
+                { id: 'g400_3', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/oT9BT3O.png', size: '400ml' },
+                { id: 'g400_4', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/EnXXzv1.png', size: '400ml' },
+                { id: 'g400_5', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/bqtqlZt.png', size: '400ml' },
+                { id: 'g400_6', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/JqZ6HUJ.png', size: '400ml' },
+                { id: 'g400_7', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/AJxNVhz.png', size: '400ml' },
+                { id: 'g400_8', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/jVnOQF2.png', size: '400ml' },
+                { id: 'g600_1', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/psvnNEb.png', size: '600ml' },
+                { id: 'g600_2', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/c9cfzy3.png', size: '600ml' },
+                { id: 'g600_3', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/t2VKOii.png', size: '600ml' },
+                { id: 'g600_4', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/G8wPyek.png', size: '600ml' },
+                { id: 'g600_5', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/qQD6wCa.png', size: '600ml' },
+                { id: 'g600_6', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/fYbnKUQ.png', size: '600ml' },
+                { id: 'g600_7', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/5nnKIlT.png', size: '600ml' },
+                { id: 'g600_8', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/j8JEVFM.png', size: '600ml' },
+                { id: 'g600_9', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/JXsTnli.png', size: '600ml' },
+                { id: 'g600_10', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/je8DkpR.png', size: '600ml' },
+                { id: 'g600_11', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/WZXmdia.png', size: '600ml' },
+                { id: 'g600_12', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/CNrkZes.png', size: '600ml' },
+                { id: 'g750_1', name: 'Garrafa Térmica 750ml', img: 'https://i.imgur.com/VMo5R1R.png', size: '750ml' },
+                { id: 'g750_2', name: 'Garrafa Térmica 750ml', img: 'https://i.imgur.com/K6rENed.png', size: '750ml' },
+            ],
+            '360-graus': [
+                { id: '360_1', name: 'Gravação 360º Exclusiva', img: 'https://i.imgur.com/2Arwzex.mp4', size: 'Arte Completa' },
+                { id: '360_2', name: 'Arte 360º Premium', img: 'https://i.imgur.com/7TCKhuk.mp4', size: 'Arte Completa' },
+                { id: '360_3', name: 'Gravação 360º Especial', img: 'https://i.imgur.com/9A4PZQ7.mp4', size: 'Arte Completa' },
+                { id: '360_4', name: 'Gravação 360º Detalhada', img: 'https://i.imgur.com/VzM0Gyp.mp4', size: 'Arte Completa' },
+                { id: '360_5', name: 'Gravação 360º Personalizada', img: 'https://i.imgur.com/tgvsrUr.mp4', size: 'Arte Completa' },
+                { id: '360_6', name: 'Gravação 360º Única', img: 'https://i.imgur.com/D1Q0YEx.mp4', size: 'Arte Completa' },
+                { id: '360_7', name: 'Gravação 360º Estilo', img: 'https://i.imgur.com/fzATcBy.mp4', size: 'Arte Completa' },
+                { id: '360_8', name: 'Gravação 360º Criativa', img: 'https://i.imgur.com/U14QAun.mp4', size: 'Arte Completa' }
+            ],
+            'foto-gravacao': [
+                { id: 'fg_1', name: 'Foto Gravação Exclusiva', img: 'https://i.imgur.com/9RPfCp8.mp4' },
+                { id: 'fg_2', name: 'Foto Gravação Premium', img: 'https://i.imgur.com/Zkb4U8n.mp4' }
+            ],
+            'kit-churrasco': [
+                { id: 'kn_1', name: 'Kit Churrasco Premium', img: 'https://i.imgur.com/4kON5cD.jpeg' },
+                { id: 'kn_2', name: 'Kit Churrasco Exclusivo', img: 'https://i.imgur.com/55COugr.jpeg' },
+                { id: 'kn_3', name: 'Kit Churrasco Especial', img: 'https://i.imgur.com/jYZNwaA.jpeg' },
+            ],
+            'porta-joias': [
+                { id: 'p1', name: 'Porta Jóias Clássico', img: 'https://i.imgur.com/iFJCFe8.jpeg' },
+                { id: 'p2', name: 'Estojo Aveludado', img: 'https://i.imgur.com/O284ISc.jpeg' },
+            ],
+            'tabuas': [
+                { id: 't1', name: 'Tábua de Madeira Premium', img: 'https://i.imgur.com/B08JnuQ.jpeg' },
+                { id: 't2', name: 'Tábua de Madeira Exclusiva', img: 'https://i.imgur.com/OIfx7tp.jpeg' },
+                { id: 't3', name: 'Tábua de Madeira Especial', img: 'https://i.imgur.com/8zTG01o.jpeg' },
+            ]
+        };
+
+        let currentView = 'home';
+        let selectedCategory = null;
+        let isDarkMode = false; 
+        let activeStoryIndex = 0;
+        let storyTimer = null;
+        const STORY_DURATION = 4000;
+
         document.addEventListener('DOMContentLoaded', () => {
-            const ctaArea = document.getElementById('cta-area');
-            const footerArea = document.getElementById('footer-area');
-
-            const titleData = {
-                wrapperId: 'wrapper-title',
-                textId: 'text-title',
-                beamId: 'beam-title',
-                speed: 80, 
-                words: [
-                    { text: "Tudo", color: "#3A1E0B" },
-                    { text: "Com", color: "#3A1E0B" },
-                    { text: "Laser", color: "#B86514" }
-                ]
-            };
-
-            const subtitleData = {
-                wrapperId: 'wrapper-subtitle',
-                textId: 'text-subtitle',
-                beamId: 'beam-subtitle',
-                speed: 40, 
-                words: "Corte & Gravação de Precisão".split(" ").map(w => ({ text: w, color: "#6B7280" }))
-            };
-
-            function prepareTextHTML(data) {
-                const container = document.getElementById(data.textId);
-                data.words.forEach((wordData, index) => {
-                    const wordSpan = document.createElement('span');
-                    wordSpan.style.whiteSpace = 'nowrap';
-                    wordData.text.split('').forEach(char => {
-                        const charSpan = document.createElement('span');
-                        charSpan.textContent = char;
-                        charSpan.className = 'char-invisible relative inline-block';
-                        charSpan.style.setProperty('--target-color', wordData.color);
-                        wordSpan.appendChild(charSpan);
-                    });
-                    container.appendChild(wordSpan);
-                    if (index < data.words.length - 1) {
-                        const space = document.createElement('span');
-                        space.innerHTML = '&nbsp;';
-                        container.appendChild(space);
-                    }
-                });
-            }
-
-            async function runLaserSequence(data) {
-                const wrapper = document.getElementById(data.wrapperId);
-                const beam = document.getElementById(data.beamId);
-                const chars = wrapper.querySelectorAll('.char-invisible');
-                if(chars.length === 0) return;
-
-                beam.style.opacity = '1';
-                for (let i = 0; i < chars.length; i++) {
-                    const char = chars[i];
-                    const wrapperRect = wrapper.getBoundingClientRect();
-                    const charRect = char.getBoundingClientRect();
-
-                    const relativeTop = charRect.top - wrapperRect.top;
-                    const relativeLeft = charRect.left - wrapperRect.left;
-                    
-                    beam.style.height = (charRect.height * 1.3) + 'px';
-                    beam.style.top = (relativeTop - (charRect.height * 0.15)) + 'px';
-                    beam.style.left = (relativeLeft + charRect.width) + 'px';
-
-                    char.className = 'char-burned font-bold';
-                    await new Promise(r => setTimeout(r, data.speed));
-                }
-                beam.style.opacity = '0';
-            }
-
-            async function startShow() {
-                prepareTextHTML(titleData);
-                prepareTextHTML(subtitleData);
-
-                await document.fonts.ready;
-                await new Promise(r => setTimeout(r, 600));
-                await runLaserSequence(titleData);
-                await new Promise(r => setTimeout(r, 200));
-                await runLaserSequence(subtitleData);
-
-                ctaArea.style.opacity = '1';
-                footerArea.style.opacity = '1';
-            }
-
-            setTimeout(() => {
-                document.querySelectorAll('.char-invisible').forEach(c => c.style.color = 'var(--target-color)');
-                ctaArea.style.opacity = '1';
-                footerArea.style.opacity = '1';
-            }, 6000);
-
-            startShow();
+            renderSidebar();
+            renderView();
+            lucide.createIcons();
+            
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            if(themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+            if(themeText) themeText.textContent = 'Escuro';
+            lucide.createIcons();
         });
 
-        function shareLink() {
-            const url = window.location.href;
-            if (navigator.share) {
-                navigator.share({ title: 'Tudo Com Laser', url: url }).catch(console.error);
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (isDarkMode) {
+                html.classList.add('dark');
+                themeIcon.setAttribute('data-lucide', 'sun');
+                themeText.textContent = 'Claro';
             } else {
-                navigator.clipboard.writeText(url).then(() => {
-                    const toast = document.getElementById("toast");
-                    toast.classList.remove("-translate-y-24", "opacity-0");
-                    setTimeout(() => { toast.classList.add("-translate-y-24", "opacity-0"); }, 3000);
-                });
+                html.classList.remove('dark');
+                themeIcon.setAttribute('data-lucide', 'moon');
+                themeText.textContent = 'Escuro';
+            }
+            lucide.createIcons();
+        }
+
+        function navigateToHome() {
+            currentView = 'home';
+            selectedCategory = null;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderSidebar();
+            renderView();
+        }
+
+        function navigateToCategory(catId) {
+            currentView = 'category';
+            selectedCategory = CATEGORIES.find(c => c.id === catId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderSidebar();
+            renderView();
+        }
+
+        function renderSidebar() {
+            const container = document.getElementById('nav-container');
+            
+            let html = `
+                <button onclick="navigateToHome()" class="w-full text-center md:text-left px-1 py-3 md:px-5 md:py-4 font-bold transition-all duration-200 flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-2
+                    ${currentView === 'home' ? 'clay-btn-pressed text-[#D4AF37]' : 'clay-btn text-slate-600 dark:text-neutral-400'}">
+                    <span class="leading-tight text-[10px] md:text-sm">Início</span>
+                </button>
+            `;
+
+            CATEGORIES.forEach(cat => {
+                const isActive = selectedCategory && selectedCategory.id === cat.id;
+                html += `
+                    <button onclick="navigateToCategory('${cat.id}')" class="w-full text-center md:text-left px-1 py-3 md:px-5 md:py-4 font-semibold transition-all duration-200 flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-2
+                        ${isActive ? 'clay-btn-pressed text-[#D4AF37]' : 'clay-btn text-slate-600 dark:text-neutral-400'}">
+                        <span class="leading-tight text-[10px] md:text-sm whitespace-normal md:whitespace-nowrap">${cat.name}</span>
+                    </button>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function renderView() {
+            const container = document.getElementById('content-container');
+            
+            if (currentView === 'home') {
+                container.innerHTML = getHomeHTML();
+                // Pequeno atraso para garantir que a renderização inicial terminou
+                setTimeout(() => updateStoryDOM(), 50);
+            } else {
+                stopStoryTimer();
+                container.innerHTML = getCategoryHTML();
+            }
+            lucide.createIcons();
+        }
+
+        function getHomeHTML() {
+            let storyBars = STORY_IMAGES.map((_, idx) => `
+                <div class="h-1.5 flex-1 bg-black/20 dark:bg-white/20 rounded-full overflow-hidden">
+                    <div id="story-bar-${idx}" class="h-full bg-[#D4AF37] rounded-full w-0"></div>
+                </div>
+            `).join('');
+
+            let storyMedia = STORY_IMAGES.map((media, idx) => {
+                const isActiveClass = idx === activeStoryIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none';
+                if (media.endsWith('.mp4')) {
+                    return `<video id="story-media-${idx}" src="${media}" muted playsinline class="absolute inset-0 w-full h-full object-cover rounded-[1rem] md:rounded-[1.7rem] transition-opacity duration-700 ${isActiveClass}"></video>`;
+                } else {
+                    return `<img id="story-media-${idx}" src="${media}" class="absolute inset-0 w-full h-full object-cover rounded-[1rem] md:rounded-[1.7rem] transition-opacity duration-700 ${isActiveClass}" />`;
+                }
+            }).join('');
+
+            let workImagesHTML = WORK_IMAGES.map((img) => `
+                <div class="w-[120px] md:w-[200px] shrink-0 px-1 md:px-2 cursor-pointer transition-transform hover:scale-105" onclick="setFullscreenImage('${img}')">
+                    <div class="aspect-[3/4] rounded-lg md:rounded-xl overflow-hidden clay-surface p-1">
+                        <img src="${img}" alt="Trabalho" class="w-full h-full object-cover rounded-[0.5rem] md:rounded-[0.8rem]" />
+                    </div>
+                </div>
+            `).join('');
+            
+            // Duplicando a lista para garantir que a animação de scroll infinito fique sem falhas
+            workImagesHTML += workImagesHTML;
+
+            return `
+                <div class="animate-in fade-in duration-500 flex flex-col items-center justify-center gap-6 md:gap-12 pt-0 md:pt-4">
+                    <div class="w-full text-center space-y-2 md:space-y-3 max-w-2xl mx-auto clay-surface p-4 md:p-6">
+                        <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-elegant italic font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-slate-400 via-[#D4AF37] to-[#B8860B] pb-1 md:pb-2">
+                            Destaques
+                        </h1>
+                        <p class="text-sm md:text-2xl font-bold text-[#D4AF37] flex items-center justify-center gap-1.5 md:gap-2">
+                            Foto Gravação
+                        </p>
+                    </div>
+
+                    <div class="shrink-0 flex justify-center py-2 w-full">
+                        <div class="relative block w-[160px] min-[380px]:w-[200px] sm:w-[280px] md:w-[400px] aspect-[9/16] clay-surface p-2 md:p-4 group">
+                            
+                            <button class="absolute inset-y-0 left-0 w-12 md:w-16 z-30 flex items-center justify-center cursor-pointer" onclick="handlePrevStory(event)">
+                                <div class="clay-btn p-1.5 md:p-2 text-slate-800 dark:text-white ml-1 md:ml-2 active:scale-95 transition-transform"><i data-lucide="chevron-left" class="w-4 h-4 md:w-6 md:h-6"></i></div>
+                            </button>
+                            <button class="absolute inset-y-0 right-0 w-12 md:w-16 z-30 flex items-center justify-center cursor-pointer" onclick="handleNextStory(event)">
+                                <div class="clay-btn p-1.5 md:p-2 text-slate-800 dark:text-white mr-1 md:mr-2 active:scale-95 transition-transform"><i data-lucide="chevron-right" class="w-4 h-4 md:w-6 md:h-6"></i></div>
+                            </button>
+
+                            <div class="absolute top-4 md:top-8 left-0 w-full px-4 md:px-6 flex gap-1.5 md:gap-2 z-20">
+                                ${storyBars}
+                            </div>
+                            
+                            <div class="relative w-full h-full rounded-[1rem] md:rounded-[1.7rem] overflow-hidden shadow-inner cursor-pointer" onclick="handleRedirectWhatsApp('Destaques')">
+                                ${storyMedia}
+                                <div class="absolute top-0 left-0 w-full h-20 md:h-24 bg-gradient-to-b from-black/40 to-transparent z-10 pointer-events-none"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full mt-6 md:mt-12 overflow-hidden clay-surface py-4 md:py-6">
+                        <h2 class="text-xl md:text-4xl font-elegant italic font-bold tracking-wide mb-4 md:mb-8 text-center text-[#D4AF37]">
+                            Nossos Trabalhos
+                        </h2>
+                        <div class="relative w-full flex">
+                            <div class="absolute inset-y-0 left-0 w-4 md:w-20 bg-gradient-to-r from-[#e6eef5] dark:from-[#1a1c23] to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute inset-y-0 right-0 w-4 md:w-20 bg-gradient-to-l from-[#e6eef5] dark:from-[#1a1c23] to-transparent z-10 pointer-events-none"></div>
+                            
+                            <div class="flex w-[200%] animate-scroll gap-1 md:gap-2 px-2 md:px-4">
+                                ${workImagesHTML}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getCategoryHTML() {
+            const products = PRODUCTS_DB[selectedCategory.id] || [];
+            
+            let productsHTML = products.map(product => {
+                const isVideo = product.img.endsWith('.mp4');
+                const mediaHTML = isVideo
+                    ? `<video src="${product.img}" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[0.8rem] md:rounded-[1.2rem]"></video>`
+                    : `<img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover rounded-[0.8rem] md:rounded-[1.2rem]" />`;
+                
+                return `
+                    <button onclick="openProductModal('${product.id}')" class="relative w-full clay-btn p-1.5 md:p-3 text-left flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform">
+                        <div class="w-full aspect-[9/16] relative rounded-[0.8rem] md:rounded-[1.2rem] overflow-hidden shadow-inner bg-black/5 dark:bg-white/5">
+                            ${mediaHTML}
+                            ${isVideo ? `<div class="absolute top-1 right-1 md:top-2 md:right-2 bg-black/50 text-white p-1 md:p-1.5 rounded-full backdrop-blur-sm"><i data-lucide="play" class="w-3 h-3 md:w-4 md:h-4 fill-white"></i></div>` : ''}
+                        </div>
+                        <div class="mt-2 md:mt-3 px-1 md:px-2 pb-1">
+                            <h3 class="text-slate-800 dark:text-neutral-200 text-[10px] sm:text-xs md:text-base font-bold line-clamp-2 leading-tight">
+                                ${product.name}
+                            </h3>
+                            ${product.size ? `<span class="text-[#D4AF37] text-[8px] md:text-xs font-black uppercase mt-0.5 md:mt-1 block tracking-wider">${product.size}</span>` : ''}
+                        </div>
+                    </button>
+                `;
+            }).join('');
+
+            if (products.length === 0) {
+                productsHTML = `
+                    <div class="col-span-full text-center py-8 md:py-16 clay-surface">
+                        <p class="text-slate-500 dark:text-neutral-400 font-semibold text-xs md:text-lg">Novos produtos em breve!</p>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                    <div class="mb-4 md:mb-12 text-center clay-surface p-4 md:p-8">
+                        <h1 class="text-2xl sm:text-3xl md:text-5xl font-elegant italic font-extrabold mb-1 md:mb-4 text-[#D4AF37] tracking-wide">${selectedCategory.name}</h1>
+                        <p class="text-slate-600 dark:text-neutral-400 font-medium text-[10px] sm:text-xs md:text-lg max-w-2xl mx-auto">${selectedCategory.desc || 'Selecione um produto para expandir'}</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-6 lg:gap-8">
+                        ${productsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        function startStoryTimer() {
+            stopStoryTimer();
+            const currentMediaUrl = STORY_IMAGES[activeStoryIndex];
+            const bar = document.getElementById(`story-bar-${activeStoryIndex}`);
+            
+            // Função para aplicar a animação na barra baseada na duração real
+            const playAnimation = (durationMs) => {
+                if (bar) {
+                    bar.style.animationDuration = `${durationMs}ms`;
+                    bar.className = `h-full bg-[#D4AF37] rounded-full`; // Limpa
+                    void bar.offsetWidth; // Força recarregamento (reflow)
+                    bar.className = `h-full bg-[#D4AF37] rounded-full animate-story-progress`;
+                }
+                storyTimer = setTimeout(() => handleNextStory(null), durationMs);
+            };
+
+            if (currentMediaUrl.endsWith('.mp4')) {
+                const video = document.getElementById(`story-media-${activeStoryIndex}`);
+                if (video) {
+                    if (video.readyState >= 1) { // Metadata já carregada
+                        playAnimation(video.duration * 1000);
+                    } else {
+                        playAnimation(10000); // Fallback enquanto carrega os metadados
+                        video.onloadedmetadata = () => {
+                            stopStoryTimer(); 
+                            playAnimation(video.duration * 1000);
+                        };
+                    }
+                } else {
+                    playAnimation(STORY_DURATION);
+                }
+            } else {
+                playAnimation(STORY_DURATION);
+            }
+        }
+
+        function stopStoryTimer() {
+            if (storyTimer) clearTimeout(storyTimer);
+        }
+
+        function handleNextStory(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            activeStoryIndex = (activeStoryIndex + 1) % STORY_IMAGES.length;
+            updateStoryDOM();
+        }
+
+        function handlePrevStory(e) {
+            if (e) { e.preventDefault(); e.stopPropagation(); }
+            activeStoryIndex = (activeStoryIndex - 1 + STORY_IMAGES.length) % STORY_IMAGES.length;
+            updateStoryDOM();
+        }
+
+        function updateStoryDOM() {
+            // Atualiza barrinhas e classes
+            for (let i = 0; i < STORY_IMAGES.length; i++) {
+                const bar = document.getElementById(`story-bar-${i}`);
+                if (!bar) continue;
+                if (i < activeStoryIndex) {
+                    bar.className = `h-full bg-[#D4AF37] rounded-full w-full`;
+                } else if (i > activeStoryIndex) {
+                    bar.className = `h-full bg-[#D4AF37] rounded-full w-0`;
+                } else {
+                    bar.className = `h-full bg-[#D4AF37] rounded-full w-0`; // Limpa ativo para a animação começar do zero
+                }
+            }
+
+            // Exibe mídia certa e inicia os vídeos
+            for (let i = 0; i < STORY_IMAGES.length; i++) {
+                const media = document.getElementById(`story-media-${i}`);
+                if (!media) continue;
+                if (i === activeStoryIndex) {
+                    media.className = `absolute inset-0 w-full h-full object-cover rounded-[1rem] md:rounded-[1.7rem] transition-opacity duration-700 opacity-100 z-10`;
+                    if (media.tagName === 'VIDEO') {
+                        media.currentTime = 0;
+                        media.play().catch(e => console.log("Erro ao iniciar vídeo:", e));
+                    }
+                } else {
+                    media.className = `absolute inset-0 w-full h-full object-cover rounded-[1rem] md:rounded-[1.7rem] transition-opacity duration-700 opacity-0 z-0 pointer-events-none`;
+                    if (media.tagName === 'VIDEO') {
+                        media.pause();
+                    }
+                }
+            }
+            startStoryTimer();
+        }
+
+        function getProductById(id) {
+            for (const cat in PRODUCTS_DB) {
+                const product = PRODUCTS_DB[cat].find(p => p.id === id);
+                if (product) return product;
+            }
+            return null;
+        }
+
+        function openProductModal(id) {
+            const product = getProductById(id);
+            if (!product) return;
+
+            const modal = document.getElementById('product-modal');
+            const isVideo = product.img.endsWith('.mp4');
+            const mediaHTML = isVideo
+                ? `<video src="${product.img}" autoplay loop muted playsinline class="w-full h-full object-cover rounded-[1rem] md:rounded-2xl"></video>`
+                : `<img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover rounded-[1rem] md:rounded-2xl" />`;
+
+            modal.innerHTML = `
+                <div class="relative w-[95%] sm:max-w-sm flex flex-col max-h-[90vh] clay-surface p-2 md:p-4">
+                    
+                    <button onclick="closeProductModal()" class="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center clay-btn text-slate-800 dark:text-white cursor-pointer">
+                        <i data-lucide="x" class="w-4 h-4 md:w-5 md:h-5"></i>
+                    </button>
+                    
+                    <div class="relative w-full h-[300px] md:h-96 shrink-0 cursor-pointer clay-surface p-1.5 md:p-2" onclick="setFullscreenImage('${product.img}')">
+                        ${mediaHTML}
+                        ${isVideo ? `<div class="absolute inset-0 flex items-center justify-center bg-black/20 rounded-[1rem] md:rounded-2xl pointer-events-none"><i data-lucide="play" class="w-10 h-10 md:w-12 md:h-12 text-white/80 fill-white/80"></i></div>` : ''}
+                        
+                        <div class="absolute bottom-3 md:bottom-4 left-0 w-full flex justify-center pointer-events-none">
+                            <span class="bg-black/60 text-white text-[9px] md:text-xs px-3 py-1 md:py-1.5 rounded-full backdrop-blur-md font-medium">Tocar para ampliar</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3 md:p-4 flex flex-col flex-1 overflow-y-auto no-scrollbar">
+                        <h3 class="text-lg md:text-2xl font-extrabold mb-3 md:mb-4 text-slate-800 dark:text-white leading-tight">${product.name}</h3>
+                        
+                        ${product.size ? `
+                            <div class="mb-4 md:mb-6 clay-surface p-3 md:p-4">
+                                <div class="flex justify-between items-center text-xs md:text-base font-semibold">
+                                    <span class="text-slate-500 dark:text-neutral-400">Capacidade:</span> 
+                                    <span class="text-slate-800 dark:text-neutral-200">${product.size}</span>
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <div class="mt-auto pt-2 md:pt-4">
+                            <button onclick="handleRedirectWhatsApp('${product.name}')" class="w-full flex items-center justify-center gap-1.5 md:gap-2 text-white px-4 py-3 md:px-6 md:py-4 font-bold text-xs md:text-base clay-wa cursor-pointer">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 md:w-5 md:h-5" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.883-.733-1.48-1.638-1.653-1.935-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+                                </svg>
+                                Pedir orçamento
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('product-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function setFullscreenImage(src) {
+            const modal = document.getElementById('fullscreen-modal');
+            const content = document.getElementById('fullscreen-content');
+            
+            if (src) {
+                closeProductModal();
+                if (src.endsWith('.mp4')) {
+                    content.innerHTML = `<video src="${src}" controls autoplay muted playsinline class="max-w-full max-h-[85vh] object-contain rounded-2xl clay-surface p-1 md:p-2 pointer-events-auto"></video>`;
+                } else {
+                    content.innerHTML = `<img src="${src}" alt="Ampliada" class="max-w-full max-h-[85vh] object-contain rounded-2xl clay-surface p-1 md:p-2 pointer-events-auto" />`;
+                }
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                content.innerHTML = '';
+            }
+            lucide.createIcons();
+        }
+
+        function closeModals(e) {
+            if (e.target.id === 'product-modal') closeProductModal();
+            if (e.target.id === 'fullscreen-modal') setFullscreenImage(null);
+        }
+
+        function handleRedirectWhatsApp(productName = "") {
+            const text = productName ? `${WHATSAPP_BASE_MSG}: ${productName}` : WHATSAPP_BASE_MSG;
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+            
+            const newWindow = window.open(url, '_blank');
+            if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                window.location.href = url;
             }
         }
     </script>
 </body>
 </html>
-
-
