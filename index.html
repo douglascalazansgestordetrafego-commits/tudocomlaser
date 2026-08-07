@@ -1,25 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="light">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tudo Com Laser - Produtos Personalizados</title>
+    <title>Tudo com Laser | Links</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: {
-                        elegant: ['"Playfair Display"', 'serif'],
-                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    colors: {
+                        bgMain: '#000000', /* Preto puro para combinar com a logo */
+                        bgCard: '#0A0A0A', 
+                        brandGold: '#FFB300', /* Amarelo/Laranja vibrante extraído da logo */
+                        whatsapp: '#25D366',
+                        tiktok: '#FE2C55',
+                        instagram: '#E1306C'
                     },
-                    animation: {
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
                     }
                 }
             }
@@ -27,656 +38,179 @@
     </script>
 
     <style>
-        :root {
-            --clay-bg: #e6eef5;
-            --clay-shadow-light: #ffffff;
-            --clay-shadow-dark: #c5d2e0;
-        }
-        .dark {
-            --clay-bg: #1a1c23;
-            --clay-shadow-light: #242730;
-            --clay-shadow-dark: #101116;
-        }
-
         body {
-            background-color: var(--clay-bg);
-            -webkit-tap-highlight-color: transparent;
+            background-color: #000000;
+            color: #F8FAFC;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            /* Gradiente de fundo com o novo amarelo */
+            background-image: radial-gradient(circle at 50% 0%, rgba(255, 179, 0, 0.15) 0%, transparent 50%);
+            position: relative;
         }
 
-        .clay-surface {
-            background: var(--clay-bg);
-            box-shadow: 6px 6px 12px var(--clay-shadow-dark), 
-                       -6px -6px 12px var(--clay-shadow-light);
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04; 
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- BOTÕES PREMIUM --- */
+        .link-btn {
+            --brand-color: #FFB300; /* Dourado padrão */
+            --brand-color-rgb: 255, 179, 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            width: 100%;
+            padding: 18px 24px;
+            border-radius: 16px;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.4s ease, background 0.4s ease;
+            opacity: 0.5;
+            cursor: pointer;
+            text-align: left;
         }
 
-        .clay-surface-inset {
-            background: var(--clay-bg);
-            box-shadow: inset 4px 4px 8px var(--clay-shadow-dark), 
-                       inset -4px -4px 8px var(--clay-shadow-light);
+        .link-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.05);
         }
-
-        .clay-wa {
-            background: #25D366;
-            box-shadow: 4px 4px 10px rgba(37, 211, 102, 0.4), 
-                       -4px -4px 10px rgba(255, 255, 255, 0.6);
-            border: none;
-        }
-        .dark .clay-wa {
-            box-shadow: 4px 4px 10px rgba(37, 211, 102, 0.2), 
-                       -4px -4px 10px rgba(37, 211, 102, 0.1);
-        }
-
-        .clay-btn:active, .clay-wa:active {
-            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2), 
-                       inset -4px -4px 8px rgba(255,255,255,0.2);
+        .link-btn:active {
             transform: scale(0.98);
         }
 
-        @keyframes story-progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-        .animate-story-progress { animation-name: story-progress; animation-timing-function: linear; animation-fill-mode: forwards; }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .animate-scroll { animation: scroll 20s linear infinite; }
-        .animate-scroll:hover { animation-play-state: paused; }
+        /* Definição de cores específicas para cada botão (laser e fundo) */
+        .link-btn.whatsapp { --brand-color: #25D366; --brand-color-rgb: 37, 211, 102; }
+        .link-btn.tiktok { --brand-color: #FE2C55; --brand-color-rgb: 254, 44, 85; }
+        .link-btn.instagram { --brand-color: #E1306C; --brand-color-rgb: 225, 48, 108; }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        @keyframes pulse-whatsapp {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        /* Cores de brilho dinâmicas quando o laser termina */
+        .link-btn.ready {
+            border-color: rgba(var(--brand-color-rgb), 0.5);
+            background: linear-gradient(90deg, rgba(var(--brand-color-rgb), 0.12) 0%, rgba(255,255,255,0.02) 100%);
+            box-shadow: 0 4px 20px rgba(var(--brand-color-rgb), 0.15);
+            opacity: 1;
         }
-        .clay-pulse { animation: pulse-whatsapp 2s infinite ease-in-out; }
 
-        @keyframes rocket-launch {
-            0% { transform: translateY(0) scale(1); }
-            10% { transform: translateX(-3px) translateY(2px) rotate(-3deg); }
-            20% { transform: translateX(3px) translateY(-2px) rotate(3deg); }
-            30% { transform: translateX(-3px) translateY(2px) rotate(-3deg); }
-            40% { transform: translateX(3px) translateY(-2px) rotate(3deg); }
-            50% { transform: translateX(0) translateY(0) scale(0.9); }
-            100% { transform: translateY(-150vh) scale(0.5); opacity: 0; }
+        /* --- EFEITO LASER --- */
+        .laser-pointer {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background-color: #FFF;
+            /* A cor do laser puxa automaticamente a cor da marca do botão */
+            box-shadow: 0 0 8px 1px var(--brand-color), 0 0 15px 3px rgba(var(--brand-color-rgb), 0.5);
+            vertical-align: text-bottom;
+            animation: flicker 0.05s infinite alternate;
+            margin-left: 3px;
         }
-        .rocket-takeoff {
-            animation: rocket-launch 1.2s ease-in forwards !important;
-            pointer-events: none;
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
+
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 12px 2px #fff, 0 0 20px 5px var(--brand-color); }
+        }
+
+        .laser-text-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            min-height: 24px;
         }
     </style>
 </head>
+<body>
 
-<body class="text-slate-800 dark:text-neutral-200 selection:bg-[#D4AF37] selection:text-black transition-colors duration-300 overflow-x-hidden">
-    
-    <div class="flex relative min-h-screen">
+    <!-- CONTAINER PRINCIPAL -->
+    <main class="w-full max-w-md mx-auto px-6 pt-12 pb-8 flex flex-col flex-1 relative z-10">
         
-        <!-- SIDEBAR (MENU LATERAL CLAYMORPHISM) -->
-        <aside class="fixed inset-y-0 left-0 z-40 w-[90px] sm:w-[120px] md:w-64 flex flex-col transition-all duration-300 ease-in-out clay-surface rounded-r-3xl my-2 md:my-4 -ml-2 pr-2 md:pr-0">
-            <div class="p-3 md:p-6 flex flex-col items-center gap-2 md:gap-3 mt-2">
-                <div class="clay-surface p-1 md:p-2 rounded-full mb-1">
-                    <img src="https://i.imgur.com/fWLcqLl.jpg" alt="Logo" class="w-14 h-14 md:w-24 md:h-24 rounded-full object-cover border-2 border-[#D4AF37]/30" />
-                </div>
-                <div class="text-center w-full flex flex-col items-center">
-                    <span class="font-semibold text-[9px] md:text-sm tracking-widest uppercase text-slate-400 dark:text-gray-400 leading-none">Tudo Com</span>
-                    <div class="flex items-center justify-center gap-0.5 mt-1">
-                        <span class="font-bold text-xs md:text-2xl text-[#D4AF37] leading-none drop-shadow-sm">Laser</span>
-                        <!-- SELO DE VERIFICADO -->
-                        <svg viewBox="0 0 24 24" class="w-3.5 h-3.5 md:w-5 md:h-5 text-blue-500" fill="currentColor">
-                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm-1.8 14.8L6 12.6l1.4-1.4 2.8 2.8 7.2-7.2 1.4 1.4-8.6 8.6z"></path>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="w-full flex flex-col md:flex-row gap-2 mt-2 md:mt-4">
-                    <button id="theme-toggle" onclick="toggleTheme()" class="flex-1 flex justify-center items-center gap-1.5 p-2 rounded-xl text-slate-500 hover:text-[#D4AF37] clay-surface transition-all clay-btn">
-                        <i data-lucide="sun" id="theme-icon" class="w-4 h-4"></i>
-                        <span id="theme-text" class="text-[9px] md:text-xs font-bold hidden md:block">Claro</span>
-                    </button>
-                    <a href="https://www.instagram.com/tudocomlaser/" target="_blank" class="flex-1 flex justify-center items-center gap-1.5 p-2 rounded-xl text-slate-500 hover:text-[#D4AF37] clay-surface transition-all clay-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                        <span class="text-[9px] md:text-xs font-bold hidden md:block">Insta</span>
-                    </a>
-                </div>
+        <!-- HEADER / PERFIL -->
+        <div class="flex flex-col items-center text-center mb-10">
+            <!-- Container da Logo com um brilho radial amarelo no fundo -->
+            <div class="w-48 h-48 mb-2 relative flex items-center justify-center">
+                <div class="absolute inset-0 bg-brandGold opacity-[0.15] blur-2xl rounded-full"></div>
+                
+                <!-- Logo carregada diretamente do Imgur -->
+                <img src="https://i.imgur.com/q1aVoPk.jpeg" alt="Tudo com Laser" class="relative z-10 w-full h-full object-cover rounded-full border border-brandGold/20 shadow-[0_0_15px_rgba(255,179,0,0.1)]">
             </div>
-
-            <!-- Navegação de Categorias -->
-            <nav id="nav-menu" class="flex-1 overflow-y-auto py-2 md:py-6 px-3 md:px-5 space-y-3 no-scrollbar mt-2 pb-10">
-                <!-- Injetado via JS -->
-            </nav>
-        </aside>
-
-        <main class="flex-1 w-full ml-[85px] sm:ml-[115px] md:ml-64 flex flex-col min-h-screen transition-all duration-300">
-            <div id="content-container" class="flex-1 w-full max-w-5xl mx-auto px-1 sm:px-3 md:px-6 py-2 md:py-4">
-                <!-- Conteúdo Injetado via JS -->
-            </div>
-        </main>
-
-        <!-- BOTÃO FLUTUANTE WHATSAPP (Claymorphism otimizado para toque móvel) -->
-        <button onclick="launchWhatsApp(event, '')" class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-[45] flex items-center justify-center gap-1.5 md:gap-2 text-white p-3.5 md:px-6 md:py-4 rounded-full font-bold clay-wa clay-pulse cursor-pointer transition-transform shadow-[0_4px_16px_rgba(37,211,102,0.4)]">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 md:w-7 md:h-7" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.883-.733-1.48-1.638-1.653-1.935-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-            </svg>
-            <span class="text-sm md:text-base hidden sm:inline">Orçamento</span>
-        </button>
-
-        <!-- MODAL DO PRODUTO (Otimizado para não vazar tela no mobile) -->
-        <div id="product-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onclick="closeModals(event)">
-            <div id="product-modal-content" class="relative w-full max-w-[290px] sm:max-w-sm flex flex-col max-h-[92vh] rounded-3xl overflow-hidden clay-surface border border-white/10" onclick="event.stopPropagation()">
-                <!-- Injetado via JS -->
-            </div>
+            
+            <h1 class="sr-only">Tudo com Laser</h1> <!-- Oculto visualmente, mas bom para o Google/SEO -->
+            <p class="text-neutral-400 text-[11px] mt-3 font-medium tracking-[0.15em] uppercase">Links Oficiais</p>
         </div>
 
-        <!-- MODAL FULLSCREEN -->
-        <div id="fullscreen-modal" class="fixed inset-0 z-[110] hidden items-center justify-center bg-black/95 backdrop-blur-md" onclick="setFullscreenImage(null)">
-            <button class="absolute top-4 right-4 md:top-8 md:right-8 z-50 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-colors">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-            <div id="fullscreen-content" class="w-full h-full flex items-center justify-center p-2 md:p-8" onclick="event.stopPropagation()">
-                <!-- Injetado via JS -->
-            </div>
+        <!-- LINKS COM EFEITO LASER -->
+        <div class="flex flex-col gap-4 w-full" id="links-container">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/5581992064543?text=Olá! Vim pelo link da bio e gostaria de solicitar um orçamento." target="_blank" class="link-btn whatsapp">
+                <i class="ph-light ph-whatsapp-logo text-[24px] text-[#25D366]"></i>
+                <div class="laser-text-container" data-text="Falar no WhatsApp"></div>
+            </a>
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@tudocomlaser?_r=1&_t=ZG-98hGpKNnpPU" target="_blank" class="link-btn tiktok">
+                <i class="ph-light ph-tiktok-logo text-[24px] text-[#FE2C55]"></i>
+                <div class="laser-text-container" data-text="Siga no TikTok"></div>
+            </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/tudocomlaser/" target="_blank" class="link-btn instagram">
+                <i class="ph-light ph-instagram-logo text-[24px] text-[#E1306C]"></i>
+                <div class="laser-text-container" data-text="Nosso Instagram"></div>
+            </a>
         </div>
 
-    </div>
+    </main>
 
+    <!-- SCRIPTS (EFEITO LASER) -->
     <script>
-        const WHATSAPP_NUMBER = "5581992064543"; 
-        const WHATSAPP_BASE_MSG = "Olá! Vim pelo site e quero o orçamento deste produto";
-
-        const CATEGORIES = [
-            { id: 'foto-gravacao', name: 'Foto Gravação', desc: 'Gravação a laser de fotografias com altíssima precisão e detalhes.', icon: 'camera' },
-            { id: 'copos', name: 'Copos Térmicos', desc: 'Copos térmicos personalizados com gravação a laser (360ml e 473ml).', icon: 'coffee' },
-            { id: '360-graus', name: 'Gravação 360º', desc: 'Produtos exclusivos com gravação a laser em toda a volta (360 graus).', icon: 'rotate-3d' },
-            { id: 'garrafas', name: 'Garrafas Térmicas', desc: 'Garrafas térmicas personalizadas para presentes, empresas e uso diário.', icon: 'droplet' },
-            { id: 'tabuas', name: 'Tábuas Personalizadas', desc: 'Tábuas de madeira personalizadas com gravação a laser.', icon: 'layout' },
-            { id: 'kit-churrasco', name: 'Kit Churrasco', desc: 'Kits personalizados para presente, datas comemorativas e brindes.', icon: 'utensils' },
-            { id: 'porta-joias', name: 'Porta-joias', desc: 'Porta-joias personalizados com acabamento elegante.', icon: 'gem' }
-        ];
-
-        const STORY_IMAGES = [
-            'https://i.imgur.com/9RPfCp8.mp4',
-            'https://i.imgur.com/Zkb4U8n.mp4'
-        ];
-
-        const WORK_IMAGES = [
-            'https://i.imgur.com/70WrggZ.jpg',
-            'https://i.imgur.com/SzorQhA.jpg',
-            'https://i.imgur.com/ovnrYLT.jpg',
-            'https://i.imgur.com/XLYQLn3.jpg',
-            'https://i.imgur.com/70WrggZ.jpg',
-            'https://i.imgur.com/SzorQhA.jpg',
-            'https://i.imgur.com/ovnrYLT.jpg',
-            'https://i.imgur.com/XLYQLn3.jpg',
-        ];
-
-        const PRODUCTS_DB = {
-            'copos': [
-                { id: 'c4_1', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/HV7R6RH.jpg', size: '473ml' },
-                { id: 'c4_2', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/eSeV7Vh.jpg', size: '473ml' },
-                { id: 'c4_3', name: 'Copo Térmico 473ml', img: 'https://i.imgur.com/j1Ogs8k.jpg', size: '473ml' },
-                { id: 'c3_1', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/9855dPS.jpg', size: '360ml' },
-                { id: 'c3_2', name: 'Copo Térmico 360ml', img: 'https://i.imgur.com/3qFSnAv.jpg', size: '360ml' }
-            ],
-            'garrafas': [
-                { id: 'g400_1', name: 'Garrafa Térmica 400ml', img: 'https://i.imgur.com/LDbUluF.png', size: '400ml' },
-                { id: 'g600_1', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/psvnNEb.png', size: '600ml' },
-                { id: 'g600_2', name: 'Garrafa Térmica 600ml', img: 'https://i.imgur.com/c9cfzy3.png', size: '600ml' },
-                { id: 'g750_1', name: 'Garrafa Térmica 750ml', img: 'https://i.imgur.com/VMo5R1R.png', size: '750ml' },
-                { id: 'g750_2', name: 'Garrafa Térmica 750ml', img: 'https://i.imgur.com/K6rENed.png', size: '750ml' }
-            ],
-            '360-graus': [
-                { id: '360_1', name: 'Gravação 360º Exclusiva', img: 'https://i.imgur.com/2Arwzex.mp4', size: 'Arte Completa' },
-                { id: '360_2', name: 'Arte 360º Premium', img: 'https://i.imgur.com/7TCKhuk.mp4', size: 'Arte Completa' },
-                { id: '360_5', name: 'Gravação 360º Personalizada', img: 'https://i.imgur.com/tgvsrUr.mp4', size: 'Arte Completa' },
-                { id: '360_6', name: 'Gravação 360º Única', img: 'https://i.imgur.com/D1Q0YEx.mp4', size: 'Arte Completa' },
-                { id: '360_7', name: 'Gravação 360º Estilo', img: 'https://i.imgur.com/fzATcBy.mp4', size: 'Arte Completa' },
-                { id: '360_8', name: 'Gravação 360º Criativa', img: 'https://i.imgur.com/U14QAun.mp4', size: 'Arte Completa' }
-            ],
-            'foto-gravacao': [
-                { id: 'fg_1', name: 'Foto Gravação Exclusiva', img: 'https://i.imgur.com/9RPfCp8.mp4' },
-                { id: 'fg_2', name: 'Foto Gravação Premium', img: 'https://i.imgur.com/Zkb4U8n.mp4' }
-            ],
-            'kit-churrasco': [
-                { id: 'kn_1', name: 'Kit Churrasco Premium', img: 'https://i.imgur.com/4kON5cD.jpeg' },
-                { id: 'kn_2', name: 'Kit Churrasco Exclusivo', img: 'https://i.imgur.com/55COugr.jpeg' }
-            ],
-            'porta-joias': [
-                { id: 'p1', name: 'Porta Jóias Clássico', img: 'https://i.imgur.com/iFJCFe8.jpeg' }
-            ],
-            'tabuas': [
-                { id: 't1', name: 'Tábua Rústica Premium', img: 'https://i.imgur.com/B08JnuQ.jpeg' }
-            ]
-        };
-
-        let currentView = 'home';
-        let selectedCategory = null;
-        let isDarkMode = false; 
-        let activeStoryIndex = 0;
-        let storyTimer = null;
-        const STORY_DURATION = 4000;
-
         document.addEventListener('DOMContentLoaded', () => {
-            renderMenu();
-            renderView();
-            updateThemeUI();
+            initLaserEffect();
         });
 
-        function renderMenu() {
-            const nav = document.getElementById('nav-menu');
+        // --- LÓGICA DO EFEITO LASER ---
+        function initLaserEffect() {
+            const textContainers = document.querySelectorAll('.laser-text-container');
             
-            let html = `
-                <button onclick="navigateTo('home')" class="w-full flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 p-2.5 md:p-3 rounded-2xl transition-all font-bold clay-btn min-h-[44px] ${currentView === 'home' ? 'clay-surface-inset text-[#D4AF37]' : 'clay-surface text-slate-500'}">
-                    <i data-lucide="home" class="w-4 h-4 md:w-5 md:h-5 shrink-0 ${currentView === 'home' ? 'text-[#D4AF37]' : 'text-slate-400'}"></i>
-                    <span class="text-[10px] md:text-sm leading-tight">Início</span>
-                </button>
-                <div class="h-1 md:h-2"></div>
-            `;
-
-            CATEGORIES.forEach(cat => {
-                const isActive = selectedCategory === cat.id;
-                html += `
-                    <button onclick="navigateTo('${cat.id}')" class="w-full flex flex-col md:flex-row items-center justify-center md:justify-start gap-1.5 md:gap-3 p-2.5 md:p-3 rounded-2xl transition-all font-semibold clay-btn min-h-[44px] ${isActive ? 'clay-surface-inset text-[#D4AF37]' : 'clay-surface text-slate-500'}">
-                        <i data-lucide="${cat.icon}" class="w-4 h-4 md:w-5 md:h-5 shrink-0 ${isActive ? 'text-[#D4AF37]' : 'text-slate-400'}"></i>
-                        <span class="text-[10px] md:text-sm leading-tight line-clamp-2 text-center md:text-left">${cat.name}</span>
-                    </button>
-                `;
+            textContainers.forEach((container, index) => {
+                const fullText = container.getAttribute('data-text');
+                setTimeout(() => {
+                    typeTextWithLaser(container, fullText);
+                }, 400 + (index * 800)); 
             });
 
-            nav.innerHTML = html;
-            if(window.lucide) window.lucide.createIcons();
-        }
-
-        function renderView() {
-            const container = document.getElementById('content-container');
-            if (currentView === 'home') {
-                container.innerHTML = getHomeHTML();
-                setTimeout(() => updateStoryDOM(), 50);
-            } else {
-                stopStoryTimer();
-                container.innerHTML = getCategoryHTML();
-            }
-            lucide.createIcons();
-        }
-
-        function getHomeHTML() {
-            let storyBars = STORY_IMAGES.map((_, idx) => `
-                <div class="h-1.5 flex-1 bg-black/20 dark:bg-white/20 rounded-full overflow-hidden clay-surface-inset border-none">
-                    <div id="story-bar-${idx}" class="h-full bg-[#D4AF37] rounded-full w-0"></div>
-                </div>
-            `).join('');
-
-            let storyMedia = STORY_IMAGES.map((media, idx) => {
-                const isActiveClass = idx === activeStoryIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none';
-                if (media.endsWith('.mp4')) {
-                    return `<video id="story-media-${idx}" src="${media}" muted playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover rounded-3xl md:rounded-[2rem] transition-opacity duration-700 ${isActiveClass}"></video>`;
-                } else {
-                    return `<img id="story-media-${idx}" src="${media}" class="absolute inset-0 w-full h-full object-cover rounded-3xl md:rounded-[2rem] transition-opacity duration-700 ${isActiveClass}" loading="lazy" />`;
-                }
-            }).join('');
-
-            let workImagesHTML = [...WORK_IMAGES, ...WORK_IMAGES].map((img) => `
-                <div class="w-[180px] sm:w-[220px] md:w-[320px] shrink-0 px-1 md:px-2 cursor-pointer transition-transform hover:scale-[1.02]" onclick="setFullscreenImage('${img}')">
-                    <div class="aspect-[3/4] rounded-2xl overflow-hidden clay-surface p-1">
-                        <img src="${img}" alt="Trabalho" class="w-full h-full object-cover rounded-xl" loading="lazy" />
-                    </div>
-                </div>
-            `).join('');
-
-            return `
-                <div class="animate-in fade-in duration-500 flex flex-col items-center justify-center gap-1.5 md:gap-3 pt-0">
-                    
-                    <div class="w-full text-center space-y-0.5 md:space-y-1 max-w-2xl mx-auto mb-1 md:mb-2">
-                        <h1 class="text-3xl sm:text-4xl md:text-5xl font-elegant italic font-bold tracking-wide text-[#D4AF37] drop-shadow-sm">
-                            Destaques
-                        </h1>
-                        <p class="text-[12px] sm:text-sm md:text-base font-medium text-slate-500 dark:text-slate-400 px-4">
-                            Transformamos fotos e artes em gravações permanentes a laser.
-                        </p>
-                    </div>
-
-                    <!-- CONTAINER DESTAQUES (Largura máxima otimizada) -->
-                    <div class="shrink-0 flex justify-center py-0.5 w-full">
-                        <button onclick="launchWhatsApp(event, 'Destaques')" class="relative block w-[92%] max-w-[360px] sm:max-w-[450px] md:max-w-[550px] aspect-[9/16] rounded-3xl md:rounded-[2rem] overflow-hidden clay-surface group cursor-pointer border-none p-1.5 md:p-2 text-left">
-                            
-                            <div class="absolute inset-y-0 left-2 w-10 md:w-16 z-30 flex items-center justify-center" onclick="handlePrevStory(event)">
-                                <div class="clay-surface p-1.5 md:p-2 rounded-full text-[#D4AF37] hover:text-white hover:bg-[#D4AF37] transition-colors"><i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i></div>
-                            </div>
-                            <div class="absolute inset-y-0 right-2 w-10 md:w-16 z-30 flex items-center justify-center" onclick="handleNextStory(event)">
-                                <div class="clay-surface p-1.5 md:p-2 rounded-full text-[#D4AF37] hover:text-white hover:bg-[#D4AF37] transition-colors"><i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i></div>
-                            </div>
-
-                            <div class="absolute top-4 md:top-8 left-0 w-full px-5 md:px-8 flex gap-1.5 md:gap-2 z-20">
-                                ${storyBars}
-                            </div>
-                            
-                            <div class="relative w-full h-full rounded-2xl md:rounded-[1.6rem] overflow-hidden shadow-inner cursor-pointer" onclick="launchWhatsApp(event, 'Destaques')">
-                                ${storyMedia}
-                                <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black/50 to-transparent z-10 pointer-events-none"></div>
-                            </div>
-                        </button>
-                    </div>
-
-                    <!-- BOTÃO CALL TO ACTION (Toque confortável de 44px+) -->
-                    <div class="w-full flex justify-center mt-2 md:mt-3 mb-3 md:mb-5">
-                        <button onclick="launchWhatsApp(event, 'Destaques')" class="flex items-center justify-center gap-2 px-5 py-3.5 md:px-8 md:py-4 rounded-xl md:rounded-2xl font-bold text-xs md:text-sm text-white clay-wa transition-transform hover:scale-[1.02] active:scale-95 w-[92%] sm:w-auto max-w-[360px] sm:max-w-none min-h-[44px]">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 md:w-5 md:h-5" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.883-.733-1.48-1.638-1.653-1.935-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                            </svg>
-                            Solicitar Orçamento no WhatsApp
-                        </button>
-                    </div>
-
-                    <!-- CARROSSEL "NOSSOS TRABALHOS" -->
-                    <div class="w-full mt-1 md:mt-2 overflow-hidden">
-                        <h2 class="text-lg md:text-2xl font-elegant italic tracking-wide mb-1.5 md:mb-3 text-center text-slate-600 dark:text-slate-400">
-                            Nossos Trabalhos
-                        </h2>
-                        <div class="relative w-full py-1 flex">
-                            <div class="absolute inset-y-0 left-0 w-6 md:w-16 bg-gradient-to-r from-[var(--clay-bg)] to-transparent z-10 pointer-events-none"></div>
-                            <div class="absolute inset-y-0 right-0 w-6 md:w-16 bg-gradient-to-l from-[var(--clay-bg)] to-transparent z-10 pointer-events-none"></div>
-                            
-                            <div class="flex w-[200%] animate-scroll">
-                                ${workImagesHTML}
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            `;
-        }
-
-        function getCategoryHTML() {
-            const cat = CATEGORIES.find(c => c.id === selectedCategory);
-            const products = PRODUCTS_DB[selectedCategory] || [];
-
-            let productsHTML = products.map((product) => `
-                <button onclick="openProductModal('${product.id}')" class="relative w-full aspect-[9/16] rounded-2xl overflow-hidden group transition-all text-left clay-surface clay-btn p-0.5 md:p-1.5 min-h-[44px]">
-                    <div class="relative w-full h-full rounded-xl overflow-hidden">
-                        ${product.img.endsWith('.mp4') ? 
-                            `<video src="${product.img}" autoplay loop muted playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100"></video>` : 
-                            `<img src="${product.img}" alt="${product.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" />`
-                        }
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex items-end p-2.5 md:p-4">
-                            <div class="w-full">
-                                <div class="w-6 h-6 md:w-8 md:h-8 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center mb-1.5 md:mb-2 border border-white/20">
-                                    <i data-lucide="sparkles" class="w-3 h-3 md:w-3.5 md:h-3.5 text-[#D4AF37]"></i>
-                                </div>
-                                <h3 class="text-white text-[11px] sm:text-sm md:text-base font-bold line-clamp-2 leading-tight drop-shadow-md">
-                                    ${product.name}
-                                </h3>
-                                ${product.size ? `<span class="text-[#D4AF37] text-[9px] md:text-xs font-extrabold uppercase mt-0.5 md:mt-1 block">${product.size}</span>` : ''}
-                            </div>
-                        </div>
-                    </div>
-                </button>
-            `).join('');
-
-            return `
-                <div class="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                    <div class="mb-3 md:mb-5 text-center sm:text-left pt-1">
-                        <h1 class="text-2xl sm:text-4xl md:text-5xl font-elegant italic font-bold mb-0.5 md:mb-1 text-[#D4AF37]">${cat.name}</h1>
-                        <p class="text-slate-500 dark:text-slate-400 text-[11px] sm:text-sm md:text-lg">${cat.desc}</p>
-                    </div>
-
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5">
-                        ${productsHTML}
-                    </div>
-
-                    ${products.length === 0 ? `
-                        <div class="text-center py-8 md:py-12 clay-surface rounded-2xl mt-4">
-                            <p class="text-slate-500 text-sm md:text-lg">Novos produtos em breve!</p>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
-        }
-
-        function startStoryTimer() {
-            stopStoryTimer();
-            const currentMediaUrl = STORY_IMAGES[activeStoryIndex];
-            const bar = document.getElementById(`story-bar-${activeStoryIndex}`);
-            
-            const playAnimation = (durationMs) => {
-                if (bar) {
-                    bar.style.animationDuration = `${durationMs}ms`;
-                    bar.className = `h-full bg-[#D4AF37] rounded-full`; 
-                    void bar.offsetWidth; 
-                    bar.className = `h-full bg-[#D4AF37] rounded-full animate-story-progress`;
-                }
-                storyTimer = setTimeout(() => handleNextStory(null), durationMs);
-            };
-
-            if (currentMediaUrl.endsWith('.mp4')) {
-                const video = document.getElementById(`story-media-${activeStoryIndex}`);
-                if (video) {
-                    if (video.readyState >= 1) { 
-                        playAnimation(video.duration * 1000);
+            function typeTextWithLaser(container, text) {
+                container.innerHTML = '<span class="text-content"></span><span class="laser-pointer"></span>';
+                const textSpan = container.querySelector('.text-content');
+                const laser = container.querySelector('.laser-pointer');
+                
+                let i = 0;
+                const typing = setInterval(() => {
+                    if (i < text.length) {
+                        textSpan.textContent += text.charAt(i);
+                        i++;
                     } else {
-                        playAnimation(10000); 
-                        video.onloadedmetadata = () => {
-                            stopStoryTimer(); 
-                            playAnimation(video.duration * 1000);
-                        };
+                        clearInterval(typing);
+                        laser.style.transition = 'opacity 0.2s ease-out';
+                        laser.style.opacity = '0';
+                        setTimeout(() => laser.remove(), 200);
+                        const parentButton = container.closest('.link-btn');
+                        if (parentButton) parentButton.classList.add('ready');
                     }
-                } else {
-                    playAnimation(STORY_DURATION);
-                }
-            } else {
-                playAnimation(STORY_DURATION);
+                }, 40); 
             }
-        }
-
-        function stopStoryTimer() {
-            if (storyTimer) clearTimeout(storyTimer);
-        }
-
-        function handleNextStory(e) {
-            if (e) { e.preventDefault(); e.stopPropagation(); }
-            activeStoryIndex = (activeStoryIndex + 1) % STORY_IMAGES.length;
-            updateStoryDOM();
-        }
-
-        function handlePrevStory(e) {
-            if (e) { e.preventDefault(); e.stopPropagation(); }
-            activeStoryIndex = (activeStoryIndex - 1 + STORY_IMAGES.length) % STORY_IMAGES.length;
-            updateStoryDOM();
-        }
-
-        function updateStoryDOM() {
-            for (let i = 0; i < STORY_IMAGES.length; i++) {
-                const bar = document.getElementById(`story-bar-${i}`);
-                if (!bar) continue;
-                if (i < activeStoryIndex) bar.className = `h-full bg-[#D4AF37] rounded-full w-full`;
-                else if (i > activeStoryIndex) bar.className = `h-full bg-[#D4AF37] rounded-full w-0`;
-                else bar.className = `h-full bg-[#D4AF37] rounded-full w-0`; 
-            }
-
-            for (let i = 0; i < STORY_IMAGES.length; i++) {
-                const media = document.getElementById(`story-media-${i}`);
-                if (!media) continue;
-                if (i === activeStoryIndex) {
-                    media.className = `absolute inset-0 w-full h-full object-cover rounded-3xl md:rounded-[2rem] transition-opacity duration-700 opacity-100 z-10`;
-                    if (media.tagName === 'VIDEO') {
-                        media.currentTime = 0;
-                        media.play().catch(e => console.log("Erro video:", e));
-                    }
-                } else {
-                    media.className = `absolute inset-0 w-full h-full object-cover rounded-3xl md:rounded-[2rem] transition-opacity duration-700 opacity-0 z-0 pointer-events-none`;
-                    if (media.tagName === 'VIDEO') media.pause();
-                }
-            }
-            startStoryTimer();
-        }
-
-        function navigateTo(id) {
-            if (id === 'home') {
-                currentView = 'home';
-                selectedCategory = null;
-            } else {
-                currentView = 'category';
-                selectedCategory = id;
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            renderMenu();
-            renderView();
-        }
-
-        function openProductModal(productId) {
-            const product = PRODUCTS_DB[selectedCategory]?.find(p => p.id === productId);
-            if (!product) return;
-
-            const modal = document.getElementById('product-modal');
-            const content = document.getElementById('product-modal-content');
-            
-            content.innerHTML = `
-                <button onclick="closeProductModal()" class="absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center rounded-full clay-surface text-slate-500 hover:text-[#D4AF37] transition-colors min-h-[32px]">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-
-                <div class="relative w-full h-[260px] md:h-80 shrink-0 cursor-pointer group p-1" onclick="setFullscreenImage('${product.img}')">
-                    <div class="w-full h-full rounded-2xl overflow-hidden relative">
-                        ${product.img.endsWith('.mp4') ? 
-                            `<video src="${product.img}" autoplay loop muted playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"></video>` : 
-                            `<img src="${product.img}" alt="${product.name}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />`
-                        }
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/20 transition-opacity">
-                            <span class="bg-black/60 text-white text-[10px] md:text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">Tocar para ampliar</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-4 flex flex-col flex-1">
-                    <h3 class="text-base md:text-lg font-bold mb-3 text-slate-800 dark:text-neutral-200 leading-tight">${product.name}</h3>
-                    
-                    ${product.size ? `
-                        <div class="mb-4 clay-surface-inset p-3 rounded-xl">
-                            <div class="flex justify-between items-center text-xs font-semibold">
-                                <span class="text-slate-500">Capacidade:</span> 
-                                <span class="text-slate-800 dark:text-neutral-200">${product.size}</span>
-                            </div>
-                        </div>
-                    ` : ''}
-
-                    <div class="mt-auto pt-2">
-                        <button onclick="launchWhatsApp(event, '${product.name}')" class="w-full flex items-center justify-center gap-2 text-white px-4 py-3.5 md:py-4 rounded-xl font-bold text-xs md:text-sm clay-wa transition-transform min-h-[44px]">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 md:w-5 md:h-5" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.405-.883-.733-1.48-1.638-1.653-1.935-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-                            </svg>
-                            Pedir orçamento
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            lucide.createIcons();
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeProductModal() {
-            const modal = document.getElementById('product-modal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function setFullscreenImage(src) {
-            const modal = document.getElementById('fullscreen-modal');
-            const content = document.getElementById('fullscreen-content');
-            
-            if (src) {
-                closeProductModal();
-                if (src.endsWith('.mp4')) {
-                    content.innerHTML = `<video src="${src}" controls autoplay playsinline class="max-w-full max-h-[85vh] object-contain rounded-2xl clay-surface p-1 md:p-2 pointer-events-auto"></video>`;
-                } else {
-                    content.innerHTML = `<img src="${src}" alt="Ampliada" class="max-w-full max-h-[85vh] object-contain rounded-2xl clay-surface p-1 md:p-2 pointer-events-auto" />`;
-                }
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            } else {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                content.innerHTML = '';
-            }
-        }
-
-        function closeModals(e) {
-            if (e.target.id === 'product-modal') closeProductModal();
-            if (e.target.id === 'fullscreen-modal') setFullscreenImage(null);
-        }
-
-        function launchWhatsApp(event, productName = "") {
-            if (event && event.currentTarget) {
-                event.preventDefault();
-                event.stopPropagation();
-                
-                const btn = event.currentTarget;
-                const rect = btn.getBoundingClientRect();
-                
-                const clone = btn.cloneNode(true);
-                clone.style.position = 'fixed';
-                clone.style.left = rect.left + 'px';
-                clone.style.top = rect.top + 'px';
-                clone.style.width = rect.width + 'px';
-                clone.style.height = rect.height + 'px';
-                clone.style.margin = '0';
-                clone.style.zIndex = '999999';
-                clone.classList.remove('clay-pulse'); 
-                
-                clone.innerHTML = `<i data-lucide="rocket" class="w-6 h-6 md:w-8 md:h-8 text-white"></i>`;
-                
-                document.body.appendChild(clone);
-                lucide.createIcons();
-                
-                btn.style.opacity = '0';
-                clone.classList.add('rocket-takeoff');
-                
-                const text = productName ? `${WHATSAPP_BASE_MSG}: ${productName}` : WHATSAPP_BASE_MSG;
-                const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-                
-                setTimeout(() => {
-                    window.location.href = url;
-                    setTimeout(() => {
-                        if(clone) clone.remove();
-                        if(btn) btn.style.opacity = '1';
-                    }, 800);
-                }, 1000); 
-
-            } else {
-                const text = productName ? `${WHATSAPP_BASE_MSG}: ${productName}` : WHATSAPP_BASE_MSG;
-                window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-            }
-        }
-
-        function toggleTheme() {
-            isDarkMode = !isDarkMode;
-            updateThemeUI();
-        }
-
-        function updateThemeUI() {
-            const html = document.documentElement;
-            const themeText = document.getElementById('theme-text');
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (isDarkMode) {
-                html.classList.add('dark');
-                html.classList.remove('light');
-                if (themeText) themeText.innerText = 'Escuro';
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
-            } else {
-                html.classList.add('light');
-                html.classList.remove('dark');
-                if (themeText) themeText.innerText = 'Claro';
-                if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
-            }
-            lucide.createIcons();
         }
     </script>
 </body>
