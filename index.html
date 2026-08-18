@@ -22,12 +22,9 @@
             theme: {
                 extend: {
                     colors: {
-                        bgMain: '#000000', /* Preto puro para combinar com a logo */
+                        bgMain: '#000000', 
                         bgCard: '#0A0A0A', 
-                        brandGold: '#FFB300', /* Amarelo/Laranja vibrante extraído da logo */
-                        whatsapp: '#25D366',
-                        tiktok: '#FE2C55',
-                        instagram: '#E1306C'
+                        brandGold: '#FFB300'
                     },
                     fontFamily: {
                         sans: ['"Inter"', 'sans-serif'],
@@ -46,7 +43,6 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            /* Gradiente de fundo com o novo amarelo */
             background-image: radial-gradient(circle at 50% 0%, rgba(255, 179, 0, 0.15) 0%, transparent 50%);
             position: relative;
         }
@@ -61,30 +57,29 @@
             z-index: 0;
         }
 
-        /* --- BOTÕES PREMIUM --- */
+        /* --- BOTÕES PREMIUM & FOGUETÃO --- */
         .link-btn {
-            --brand-color: #FFB300; /* Dourado padrão */
-            --brand-color-rgb: 255, 179, 0;
             display: flex;
             align-items: center;
             justify-content: flex-start;
-            gap: 16px;
             width: 100%;
-            padding: 18px 24px;
+            height: 64px; /* Altura fixa para manter a simetria ao encolher para círculo */
+            padding: 0 24px;
             border-radius: 16px;
             font-weight: 500;
             font-size: 15px;
             letter-spacing: 0.3px;
             position: relative;
-            overflow: hidden;
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.4s ease, background 0.4s ease;
-            opacity: 0.5;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+            opacity: 0.5; /* Começa meio transparente até o laser terminar */
             cursor: pointer;
             text-align: left;
+            box-sizing: border-box;
+            margin: 0 auto;
         }
 
         .link-btn:hover {
@@ -95,26 +90,83 @@
             transform: scale(0.98);
         }
 
-        /* Definição de cores específicas para cada botão (laser e fundo) */
-        .link-btn.whatsapp { --brand-color: #25D366; --brand-color-rgb: 37, 211, 102; }
-        .link-btn.tiktok { --brand-color: #FE2C55; --brand-color-rgb: 254, 44, 85; }
-        .link-btn.instagram { --brand-color: #E1306C; --brand-color-rgb: 225, 48, 108; }
-
-        /* Cores de brilho dinâmicas quando o laser termina */
+        /* Brilho quando o laser termina, usando as variáveis de cor de cada botão */
         .link-btn.ready {
-            border-color: rgba(var(--brand-color-rgb), 0.5);
-            background: linear-gradient(90deg, rgba(var(--brand-color-rgb), 0.12) 0%, rgba(255,255,255,0.02) 100%);
-            box-shadow: 0 4px 20px rgba(var(--brand-color-rgb), 0.15);
+            border-color: rgba(var(--brand-color-rgb), 0.4);
+            background: linear-gradient(90deg, rgba(var(--brand-color-rgb), 0.08) 0%, rgba(255,255,255,0.02) 100%);
+            box-shadow: 0 4px 20px rgba(var(--brand-color-rgb), 0.1);
             opacity: 1;
         }
 
-        /* --- EFEITO LASER --- */
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+            transition: opacity 0.2s ease, transform 0.4s ease;
+        }
+
+        .rocket-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0) translateY(20px);
+            opacity: 0;
+            color: #FFFFFF;
+            font-size: 28px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        /* --- ANIMAÇÃO DE DESCOLAGEM (ROCKET LAUNCH) --- */
+        .link-btn.launching {
+            width: 64px !important;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            background: rgba(var(--brand-color-rgb), 0.9) !important;
+            border-color: rgba(255, 255, 255, 0.6) !important;
+            box-shadow: 0 15px 35px rgba(var(--brand-color-rgb), 0.8), 0 0 20px rgba(255, 255, 255, 0.3) !important;
+            pointer-events: none;
+            z-index: 50; 
+            animation: launchSequence 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0.5s forwards;
+        }
+
+        .link-btn.launching .btn-content {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .link-btn.launching .rocket-icon {
+            transform: translate(-50%, -50%) scale(1) translateY(0);
+            opacity: 1;
+            animation: rocketRumble 0.1s linear infinite 0.4s;
+        }
+
+        @keyframes launchSequence {
+            0% { transform: translateY(0) scale(1); }
+            20% { transform: translateY(8px) scale(0.95); } 
+            100% { transform: translateY(-1000px) scale(0.5); opacity: 0; } 
+        }
+
+        @keyframes rocketRumble {
+            0% { transform: translate(-50%, -50%) scale(1) rotate(-4deg); }
+            50% { transform: translate(-50%, -50%) scale(1) rotate(4deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(-4deg); }
+        }
+
+        /* --- EFEITO LASER (Cores Dinâmicas) --- */
+        .laser-text-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            min-height: 24px;
+        }
+
         .laser-pointer {
             display: inline-block;
             width: 2px;
             height: 1.1em;
             background-color: #FFF;
-            /* A cor do laser puxa automaticamente a cor da marca do botão */
             box-shadow: 0 0 8px 1px var(--brand-color), 0 0 15px 3px rgba(var(--brand-color-rgb), 0.5);
             vertical-align: text-bottom;
             animation: flicker 0.05s infinite alternate;
@@ -125,59 +177,73 @@
             0% { opacity: 0.8; transform: scale(0.9); }
             100% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 12px 2px #fff, 0 0 20px 5px var(--brand-color); }
         }
-
-        .laser-text-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            min-height: 24px;
-        }
     </style>
 </head>
 <body>
 
-    <!-- CONTAINER PRINCIPAL -->
-    <main class="w-full max-w-md mx-auto px-6 pt-12 pb-8 flex flex-col flex-1 relative z-10">
+    <main class="w-full max-w-md mx-auto px-6 pt-16 pb-8 flex flex-col flex-1 relative z-10">
         
-        <!-- HEADER / PERFIL -->
-        <div class="flex flex-col items-center text-center mb-10">
-            <!-- Container da Logo com um brilho radial amarelo no fundo -->
-            <div class="w-48 h-48 mb-2 relative flex items-center justify-center">
-                <div class="absolute inset-0 bg-brandGold opacity-[0.15] blur-2xl rounded-full"></div>
+        <!-- HEADER / LOGO -->
+        <div class="flex flex-col items-center text-center mb-12">
+            <!-- Container da Logo com brilho radial azul do Verificado -->
+            <div class="w-[140px] h-[140px] mb-3 relative flex items-center justify-center">
+                <div class="absolute inset-0 bg-[#0095F6] opacity-[0.25] blur-2xl rounded-full"></div>
                 
-                <!-- Logo carregada diretamente do Imgur -->
-                <img src="https://i.imgur.com/q1aVoPk.jpeg" alt="Tudo com Laser" class="relative z-10 w-full h-full object-cover rounded-full border border-brandGold/20 shadow-[0_0_15px_rgba(255,179,0,0.1)]">
+                <!-- Nova Logo Redonda com Borda Azul e Sombra -->
+                <img src="https://i.imgur.com/q1aVoPk.jpeg" alt="Tudo com Laser" class="relative z-10 w-full h-full object-cover rounded-full border-[3px] border-[#0095F6] shadow-lg shadow-[#0095F6]/40">
+                
+                <!-- Selo de Verificado (Meta) Oficial -->
+                <div class="absolute bottom-[10px] right-[10px] z-20 w-[24px] h-[24px] bg-white rounded-full flex items-center justify-center">
+                    <!-- Desenho exato (SVG) do selo azul -->
+                    <svg class="w-[32px] h-[32px] text-[#0095F6] absolute" fill="currentColor" viewBox="0 0 40 40">
+                        <path d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z"></path>
+                    </svg>
+                </div>
             </div>
             
-            <h1 class="sr-only">Tudo com Laser</h1> <!-- Oculto visualmente, mas bom para o Google/SEO -->
-            <p class="text-neutral-400 text-[11px] mt-3 font-medium tracking-[0.15em] uppercase">Links Oficiais</p>
+            <h1 class="sr-only">Tudo com Laser</h1>
+            <p class="text-neutral-400 text-[11px] mt-2 font-medium tracking-[0.15em] uppercase">Links Oficiais</p>
         </div>
 
-        <!-- LINKS COM EFEITO LASER -->
+        <!-- LINKS COM EFEITO LASER & FOGUETÃO -->
         <div class="flex flex-col gap-4 w-full" id="links-container">
-            <!-- WhatsApp -->
-            <a href="https://wa.me/5581992064543?text=Olá! Vim pelo link da bio e gostaria de solicitar um orçamento." target="_blank" class="link-btn whatsapp">
-                <i class="ph-light ph-whatsapp-logo text-[24px] text-[#25D366]"></i>
-                <div class="laser-text-container" data-text="Falar no WhatsApp"></div>
+            
+            <!-- WhatsApp (Verde) -->
+            <!-- Usamos CSS variables online style para definir a cor específica de cada laser -->
+            <a href="https://wa.me/5581992064543?text=Olá! Vim pelo link da bio e gostaria de solicitar um orçamento." class="link-btn" style="--brand-color: #25D366; --brand-color-rgb: 37, 211, 102;">
+                <div class="btn-content">
+                    <i class="ph-light ph-whatsapp-logo text-[26px] text-[#25D366]"></i>
+                    <div class="laser-text-container" data-text="Falar no WhatsApp"></div>
+                </div>
+                <i class="ph-fill ph-rocket-launch rocket-icon"></i>
             </a>
-            <!-- TikTok -->
-            <a href="https://www.tiktok.com/@tudocomlaser?_r=1&_t=ZG-98hGpKNnpPU" target="_blank" class="link-btn tiktok">
-                <i class="ph-light ph-tiktok-logo text-[24px] text-[#FE2C55]"></i>
-                <div class="laser-text-container" data-text="Siga no TikTok"></div>
-            </a>
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/tudocomlaser/" target="_blank" class="link-btn instagram">
-                <i class="ph-light ph-instagram-logo text-[24px] text-[#E1306C]"></i>
-                <div class="laser-text-container" data-text="Nosso Instagram"></div>
-            </a>
-        </div>
 
+            <!-- TikTok (Vermelho TikTok) -->
+            <a href="https://www.tiktok.com/@tudocomlaser?_r=1&_t=ZG-98hGpKNnpPU" class="link-btn" style="--brand-color: #FE2C55; --brand-color-rgb: 254, 44, 85;">
+                <div class="btn-content">
+                    <i class="ph-light ph-tiktok-logo text-[26px] text-[#FE2C55]"></i>
+                    <div class="laser-text-container" data-text="Siga no TikTok"></div>
+                </div>
+                <i class="ph-fill ph-rocket-launch rocket-icon"></i>
+            </a>
+
+            <!-- Instagram (Magenta) -->
+            <a href="https://www.instagram.com/tudocomlaser/" class="link-btn" style="--brand-color: #E1306C; --brand-color-rgb: 225, 48, 108;">
+                <div class="btn-content">
+                    <i class="ph-light ph-instagram-logo text-[26px] text-[#E1306C]"></i>
+                    <div class="laser-text-container" data-text="Nosso Instagram"></div>
+                </div>
+                <i class="ph-fill ph-rocket-launch rocket-icon"></i>
+            </a>
+            
+        </div>
     </main>
 
-    <!-- SCRIPTS (EFEITO LASER) -->
+    <!-- SCRIPTS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             initLaserEffect();
+            initRocketLaunch();
         });
 
         // --- LÓGICA DO EFEITO LASER ---
@@ -188,7 +254,7 @@
                 const fullText = container.getAttribute('data-text');
                 setTimeout(() => {
                     typeTextWithLaser(container, fullText);
-                }, 400 + (index * 800)); 
+                }, 300 + (index * 700)); // Escreve um a seguir ao outro
             });
 
             function typeTextWithLaser(container, text) {
@@ -206,11 +272,39 @@
                         laser.style.transition = 'opacity 0.2s ease-out';
                         laser.style.opacity = '0';
                         setTimeout(() => laser.remove(), 200);
+                        
+                        // Liga o brilho do botão
                         const parentButton = container.closest('.link-btn');
                         if (parentButton) parentButton.classList.add('ready');
                     }
                 }, 40); 
             }
+        }
+
+        // --- LÓGICA DA DESCOLAGEM DO FOGUETÃO ---
+        function initRocketLaunch() {
+            const links = document.querySelectorAll('.link-btn');
+            
+            links.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault(); 
+                    
+                    const url = this.getAttribute('href');
+                    if (this.classList.contains('launching')) return; 
+                    
+                    this.classList.add('launching');
+                    
+                    // Espera pela animação de descolagem antes de redirecionar (~1.4 segundos)
+                    setTimeout(() => {
+                        window.location.href = url; 
+                        
+                        // Repõe o botão ao normal caso o utilizador volte à página com a seta de "Retroceder"
+                        setTimeout(() => {
+                            this.classList.remove('launching');
+                        }, 500);
+                    }, 1400);
+                });
+            });
         }
     </script>
 </body>
